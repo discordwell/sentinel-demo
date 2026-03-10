@@ -2,7 +2,13 @@
  * Sentinel Hero Grid Effect
  *
  * Generates a grid of cells over the hero section. Cells near the cursor
- * reveal in stepped concentric rings using Chebyshev distance.
+ * desaturate in a 5x5 stepped pattern using Chebyshev distance.
+ *
+ * Figma spec (saturation % per ring):
+ *   Ring 0 (center):  40%
+ *   Ring 1 (8 cells):  70%
+ *   Ring 2 (16 cells): 98%
+ *   Everything else:  100% (unchanged)
  */
 (function () {
   'use strict';
@@ -11,8 +17,8 @@
   var CELL_SIZE_MOBILE = 36;
   var TOUCH_FADE_MS = 600;
 
-  // Stepped ring opacities (Chebyshev distance from cursor cell)
-  var RING_OPACITY = [0.40, 0.70, 0.98];
+  // Saturation % per Chebyshev ring from cursor cell
+  var RING_SAT = ['40%', '70%', '98%'];
 
   var hero, grid;
   var cells = [];
@@ -123,7 +129,7 @@
     cursorX = -9999;
     cursorY = -9999;
     activeSet.forEach(function (idx) {
-      cells[idx].style.opacity = '1';
+      cells[idx].style.filter = '';
     });
     activeSet.clear();
     needsUpdate = false;
@@ -144,14 +150,12 @@
     needsUpdate = false;
     rafId = null;
 
-    // Snap cursor to grid cell
     var curCol = Math.floor(cursorX / cellSize);
     var curRow = Math.floor(cursorY / cellSize);
 
     var newActive = new Set();
-    var maxRing = RING_OPACITY.length - 1;
+    var maxRing = RING_SAT.length - 1;
 
-    // Only iterate cells within range (ring 0..maxRing)
     var rMin = Math.max(0, curRow - maxRing);
     var rMax = Math.min(rows - 1, curRow + maxRing);
     var cMin = Math.max(0, curCol - maxRing);
@@ -163,7 +167,7 @@
         if (ring <= maxRing) {
           var idx = r * cols + c;
           newActive.add(idx);
-          cells[idx].style.opacity = RING_OPACITY[ring];
+          cells[idx].style.filter = 'saturate(' + RING_SAT[ring] + ')';
         }
       }
     }
@@ -171,7 +175,7 @@
     // Reset cells that left the active set
     activeSet.forEach(function (idx) {
       if (!newActive.has(idx)) {
-        cells[idx].style.opacity = '1';
+        cells[idx].style.filter = '';
       }
     });
 

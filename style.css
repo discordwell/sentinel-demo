@@ -205,8 +205,7 @@ button {
 
 .grid-cell {
   background-color: var(--orange);
-  opacity: 1;
-  transition: opacity 120ms ease-out;
+  transition: filter 120ms ease-out;
 }
 
 .hero__content {
