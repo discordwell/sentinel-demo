@@ -170,14 +170,7 @@
         const dist = Math.sqrt(distSq);
         const opacity = dist / radius;
         newActive.add(i);
-
-        // Only write DOM if cell is newly active or opacity changed significantly
-        if (!activeSet.has(i)) {
-          cells[i].style.opacity = opacity.toFixed(2);
-        } else {
-          // Update opacity for already-active cells
-          cells[i].style.opacity = opacity.toFixed(2);
-        }
+        cells[i].style.opacity = opacity.toFixed(2);
       }
     }
 

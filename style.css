@@ -54,6 +54,16 @@ button {
   font: inherit;
 }
 
+/* ===== Focus ===== */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.newsletter__input:focus-visible {
+  outline-color: var(--cream);
+}
+
 /* ===== Typography ===== */
 .section-label {
   font-family: var(--font-mono);
@@ -179,7 +189,6 @@ button {
   background-color: var(--orange);
   opacity: 1;
   transition: opacity 120ms ease-out;
-  will-change: opacity;
 }
 
 .hero__content {
@@ -499,17 +508,17 @@ button {
 
 .briefings__card--sage { background: var(--sage); color: var(--cream); }
 .briefings__card--sage .briefings__date { color: rgba(245, 240, 232, 0.6); }
-.briefings__card--sage .briefings__card p { color: rgba(245, 240, 232, 0.8); }
+.briefings__card--sage p { color: rgba(245, 240, 232, 0.8); }
 .briefings__card--sage .briefings__tag { color: var(--cream); border-color: rgba(245, 240, 232, 0.2); }
 
 .briefings__card--mauve { background: var(--mauve); color: var(--cream); }
 .briefings__card--mauve .briefings__date { color: rgba(245, 240, 232, 0.6); }
-.briefings__card--mauve .briefings__card p { color: rgba(245, 240, 232, 0.8); }
+.briefings__card--mauve p { color: rgba(245, 240, 232, 0.8); }
 .briefings__card--mauve .briefings__tag { color: var(--cream); border-color: rgba(245, 240, 232, 0.2); }
 
 .briefings__card--orange { background: var(--orange); color: var(--cream); }
 .briefings__card--orange .briefings__date { color: rgba(245, 240, 232, 0.6); }
-.briefings__card--orange .briefings__card p { color: rgba(245, 240, 232, 0.8); }
+.briefings__card--orange p { color: rgba(245, 240, 232, 0.8); }
 .briefings__card--orange .briefings__tag { color: var(--cream); border-color: rgba(245, 240, 232, 0.2); }
 
 /* ===== Leadership ===== */
