@@ -310,6 +310,13 @@ def fetch_figma_reference(args, out_dir):
         node_document = nodes_payload.get("nodes", {}).get(node_id, {}).get("document")
         flattened = []
         if node_document:
+            box = node_document.get("absoluteBoundingBox") or {}
+            metadata["nodeBounds"] = {
+                "x": box.get("x"),
+                "y": box.get("y"),
+                "width": box.get("width"),
+                "height": box.get("height"),
+            }
             flatten_node(node_document, flattened)
             (out_dir / "figma-elements.json").write_text(json.dumps(flattened, indent=2))
 
@@ -480,9 +487,26 @@ def crop_image(source_path, crop_value, output_path):
     return output_path, {"x": x, "y": y, "width": width, "height": height}
 
 
-def diff_images(reference_path, page_path, diff_path, threshold):
+def normalize_reference(reference, metadata):
+    if metadata.get("referenceMode") != "api":
+        return reference
+
+    bounds = metadata.get("nodeBounds") or {}
+    width = round(bounds.get("width") or 0)
+    height = round(bounds.get("height") or 0)
+    if width <= 0 or height <= 0:
+        return reference
+
+    if reference.width == width and reference.height == height:
+        return reference
+
+    return reference.resize((width, height), Image.Resampling.LANCZOS)
+
+
+def diff_images(reference_path, page_path, diff_path, threshold, metadata):
     with Image.open(reference_path).convert("RGBA") as reference:
         with Image.open(page_path).convert("RGBA") as page:
+            reference = normalize_reference(reference, metadata)
             compare_width = min(reference.width, page.width)
             compare_height = min(reference.height, page.height)
             reference_compare = reference.crop((0, 0, compare_width, compare_height))
@@ -815,7 +839,7 @@ def main():
         page_path = cropped_page_path
         metadata["pageCrop"] = crop_meta
 
-    report = diff_images(reference_path, page_path, out_dir / "diff.png", args.diff_threshold)
+    report = diff_images(reference_path, page_path, out_dir / "diff.png", args.diff_threshold, metadata)
     report["metadata"] = metadata
     report["captureViewport"] = capture_viewport
     report["pageManifest"] = str(manifest_path)

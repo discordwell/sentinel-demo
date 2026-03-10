@@ -3,65 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentinel — Geopolitical Intelligence</title>
+  <title>Sentinel</title>
+  <link rel="icon" href="assets/figma/hero-brand.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Martian+Mono:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header id="hero" class="hero">
-    <nav class="site-nav">
-      <div class="site-nav__inner shell">
-        <a class="site-nav__brand" href="#hero" aria-label="Sentinel home">
-          <span class="site-nav__brand-mark">S</span>
-          <span class="site-nav__brand-word">Sentinel</span>
-        </a>
-        <button class="site-nav__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="site-nav__links">
-          <a href="#research">Research</a>
-          <a href="#track-record">Track Record</a>
-          <a href="#briefings">Briefings</a>
-          <a href="#leadership">Leadership</a>
-          <a class="site-nav__cta" href="#signup">Subscribe</a>
-        </div>
-      </div>
-    </nav>
-
     <div
       class="hero__pixels pixel-surface"
       aria-hidden="true"
-      data-mode="solid"
-      data-base-color="#E8753A"
-      data-highlight="#f6ddcb"
-      data-cell-size="52"
-      data-cell-size-mobile="36"
+      data-pattern="hero"
+      data-highlight="#fffdf2"
+      data-cell-size="90"
+      data-cell-size-mobile="45"
       data-listen-parent="#hero"
     ></div>
 
-    <div class="hero__content shell">
-      <div class="hero__panel clipped-card">
-        <p class="eyebrow eyebrow--light">Geopolitical Intelligence</p>
+    <a class="hero__brand" href="#hero" aria-label="Sentinel home">
+      <img src="assets/figma/hero-brand.png" alt="" width="90" height="90">
+    </a>
+
+    <button class="hero__menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="hero-menu">
+      <img src="assets/figma/hero-menu.png" alt="" width="90" height="90">
+    </button>
+
+    <nav id="hero-menu" class="hero__menu" aria-label="Primary">
+      <a href="#research">Research</a>
+      <a href="#track-record">Track Record</a>
+      <a href="#judgment">Judgment</a>
+      <a href="#briefings">Briefings</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#signup">Sign Up</a>
+    </nav>
+
+    <div class="hero__content">
+      <div class="hero__panel">
         <h1 class="hero__title">Sentinel is building open-source resilience for an uncertain world.</h1>
         <a class="button button--light" href="#briefings">Read the latest brief</a>
       </div>
     </div>
   </header>
 
-  <section class="press">
+  <section class="press" aria-label="Press logos">
     <div class="shell press__inner">
-      <p class="press__label">As featured in</p>
-      <div class="press__logos">
-        <img src="assets/logos/reuters.svg" alt="Reuters">
-        <img src="assets/logos/ft.svg" alt="Financial Times">
-        <img src="assets/logos/wired.svg" alt="WIRED">
-        <img src="assets/logos/techcrunch.svg" alt="TechCrunch">
-        <img src="assets/logos/thetimes.svg" alt="The Times">
-      </div>
+      <img src="assets/logos/reuters.svg" alt="Reuters">
+      <img src="assets/logos/ft.svg" alt="Financial Times">
+      <img src="assets/logos/wired.svg" alt="Wired">
+      <img src="assets/logos/techcrunch.svg" alt="TechCrunch">
+      <img src="assets/logos/thetimes.svg" alt="The Times">
     </div>
   </section>
 
@@ -69,13 +61,13 @@
     <section id="research" class="section research">
       <div class="shell">
         <div class="section-head">
-          <div>
-            <p class="eyebrow">Research Focus</p>
-            <h2 class="section-title">World-class foresight,<br>Real-world impact</h2>
+          <div class="section-head__main">
+            <p class="eyebrow">Research Focus Areas</p>
+            <h2 class="section-title">World-class foresight, Real-world impact</h2>
           </div>
-          <div class="section-note">
-            <span class="section-note__grid" aria-hidden="true"></span>
-            <p>Frontier-risk forecasting, strategic analysis, and decision-ready briefs.</p>
+          <div class="section-head__side">
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
+            <a class="section-link" href="#briefings">Read latest briefing</a>
           </div>
         </div>
 
@@ -92,7 +84,7 @@
           <article class="focus-card focus-card--maroon clipped-card">
             <h3>Bio Risks</h3>
           </article>
-          <article class="focus-card focus-card--sky clipped-card">
+          <article class="focus-card focus-card--blue clipped-card">
             <h3>Technology</h3>
           </article>
           <article class="focus-card focus-card--orange clipped-card">
@@ -106,60 +98,114 @@
       <div class="shell">
         <div class="track__panel clipped-card">
           <div class="track__intro">
-            <p class="eyebrow">Track Record</p>
-            <h2 class="section-title">Reliable accuracy when you need it most.</h2>
-            <p class="track__copy">Our calls are scored against resolved outcomes, with a consistent edge over baseline models and expert panels.</p>
-            <a class="button button--accent" href="#signup">View scorecard</a>
-            <p class="track__meta">Brier score performance across 1,200+ resolved forecasts from 2021 to 2025.</p>
+            <p class="eyebrow">A Proven Track Record</p>
+            <h2 class="section-title">Reliable accuracy when you need it most</h2>
+            <p class="track__copy">Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
+            <a class="button button--accent" href="#signup">Learn more</a>
           </div>
 
-          <div class="track__chart">
-            <svg viewBox="0 0 620 320" role="img" aria-label="Forecast performance chart from 2021 to 2025">
-              <g stroke="rgba(122, 46, 46, 0.12)" stroke-width="1">
-                <line x1="70" y1="60" x2="590" y2="60"></line>
-                <line x1="70" y1="120" x2="590" y2="120"></line>
-                <line x1="70" y1="180" x2="590" y2="180"></line>
-                <line x1="70" y1="240" x2="590" y2="240"></line>
+          <div class="track__chart" aria-label="Calibration chart">
+            <svg viewBox="0 0 766 447" role="img" aria-label="Observed frequency compared with predicted probability">
+              <g fill="#fce5c3">
+                <rect x="70" y="40" width="696" height="2"></rect>
+                <rect x="70" y="71" width="696" height="2"></rect>
+                <rect x="70" y="101" width="696" height="2"></rect>
+                <rect x="70" y="132" width="696" height="2"></rect>
+                <rect x="70" y="162" width="696" height="2"></rect>
+                <rect x="70" y="193" width="696" height="2"></rect>
+                <rect x="70" y="223" width="696" height="2"></rect>
+                <rect x="70" y="254" width="696" height="2"></rect>
+                <rect x="70" y="284" width="696" height="2"></rect>
+                <rect x="70" y="315" width="696" height="2"></rect>
+                <rect x="70" y="345" width="696" height="2"></rect>
               </g>
 
-              <g font-family="'DM Mono', monospace" font-size="11" fill="rgba(40, 23, 20, 0.45)">
-                <text x="58" y="64" text-anchor="end">1.0</text>
-                <text x="58" y="124" text-anchor="end">0.8</text>
-                <text x="58" y="184" text-anchor="end">0.6</text>
-                <text x="58" y="244" text-anchor="end">0.4</text>
-                <text x="110" y="286" text-anchor="middle">2021</text>
-                <text x="220" y="286" text-anchor="middle">2022</text>
-                <text x="330" y="286" text-anchor="middle">2023</text>
-                <text x="440" y="286" text-anchor="middle">2024</text>
-                <text x="550" y="286" text-anchor="middle">2025</text>
+              <line x1="63" y1="26" x2="767" y2="361" stroke="#c6c3be" stroke-width="2"></line>
+
+              <g fill="#c6c3be" font-family="'Martian Mono', monospace" font-size="12" font-weight="400" letter-spacing="0">
+                <text x="24" y="50">100%</text>
+                <text x="31" y="80">90%</text>
+                <text x="31" y="110">80%</text>
+                <text x="31" y="141">70%</text>
+                <text x="31" y="171">60%</text>
+                <text x="31" y="202">50%</text>
+                <text x="31" y="232">40%</text>
+                <text x="31" y="263">30%</text>
+                <text x="31" y="293">20%</text>
+                <text x="31" y="324">10%</text>
+                <text x="38" y="354">0%</text>
+                <text x="83" y="390">0%</text>
+                <text x="140" y="390">10%</text>
+                <text x="204" y="390">20%</text>
+                <text x="268" y="390">30%</text>
+                <text x="332" y="390">40%</text>
+                <text x="396" y="390">50%</text>
+                <text x="460" y="390">60%</text>
+                <text x="524" y="390">70%</text>
+                <text x="588" y="390">80%</text>
+                <text x="652" y="390">90%</text>
+                <text x="715" y="390">100%</text>
               </g>
 
-              <g stroke="#8FA48C" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round" fill="none" opacity="0.7">
-                <polyline points="110,210 220,190 330,172 440,152 550,132"></polyline>
+              <text x="12" y="258" fill="#625455" font-family="'Martian Mono', monospace" font-size="12" transform="rotate(-90 12 258)">Observed frequency</text>
+              <text x="312" y="424" fill="#625455" font-family="'Martian Mono', monospace" font-size="12">Predicted Probability</text>
+
+              <g fill="#f46921">
+                <rect x="115" y="248" width="15" height="3"></rect>
+                <rect x="120" y="251" width="5" height="94"></rect>
+                <rect x="115" y="345" width="15" height="3"></rect>
+
+                <rect x="179" y="216" width="15" height="3"></rect>
+                <rect x="184" y="219" width="5" height="126"></rect>
+                <rect x="179" y="345" width="15" height="3"></rect>
+
+                <rect x="243" y="179" width="15" height="3"></rect>
+                <rect x="248" y="182" width="5" height="155"></rect>
+                <rect x="243" y="337" width="15" height="3"></rect>
+
+                <rect x="306" y="138" width="15" height="3"></rect>
+                <rect x="311" y="141" width="5" height="150"></rect>
+                <rect x="306" y="291" width="15" height="3"></rect>
+
+                <rect x="369" y="80" width="15" height="3"></rect>
+                <rect x="374" y="83" width="5" height="164"></rect>
+                <rect x="369" y="247" width="15" height="3"></rect>
+
+                <rect x="433" y="40" width="15" height="3"></rect>
+                <rect x="438" y="43" width="5" height="144"></rect>
+                <rect x="433" y="187" width="15" height="3"></rect>
+
+                <rect x="497" y="110" width="15" height="3"></rect>
+                <rect x="502" y="113" width="5" height="134"></rect>
+                <rect x="497" y="247" width="15" height="3"></rect>
+
+                <rect x="560" y="40" width="15" height="3"></rect>
+                <rect x="565" y="43" width="5" height="134"></rect>
+                <rect x="560" y="177" width="15" height="3"></rect>
+
+                <rect x="624" y="40" width="15" height="3"></rect>
+                <rect x="629" y="43" width="5" height="100"></rect>
+                <rect x="624" y="143" width="15" height="3"></rect>
+
+                <rect x="690" y="46" width="15" height="3"></rect>
+                <rect x="695" y="49" width="5" height="94"></rect>
+                <rect x="690" y="143" width="15" height="3"></rect>
+
+                <circle cx="122" cy="302" r="10.5"></circle>
+                <circle cx="187" cy="284" r="8.5"></circle>
+                <circle cx="251" cy="244" r="6.5"></circle>
+                <circle cx="314" cy="213" r="7.5"></circle>
+                <circle cx="376" cy="163" r="5.5"></circle>
+                <circle cx="441" cy="107" r="7"></circle>
+                <circle cx="504" cy="179" r="7.5"></circle>
+                <circle cx="568" cy="93" r="6.5"></circle>
+                <circle cx="632" cy="44" r="3.5"></circle>
+                <circle cx="697" cy="48" r="5.5"></circle>
               </g>
 
-              <g stroke="#E8753A" stroke-width="7" stroke-linecap="round">
-                <line x1="110" y1="225" x2="110" y2="205"></line>
-                <line x1="220" y1="210" x2="220" y2="150"></line>
-                <line x1="330" y1="190" x2="330" y2="118"></line>
-                <line x1="440" y1="168" x2="440" y2="88"></line>
-                <line x1="550" y1="145" x2="550" y2="68"></line>
-              </g>
-
-              <g fill="#E8753A">
-                <circle cx="110" cy="215" r="6"></circle>
-                <circle cx="220" cy="178" r="6"></circle>
-                <circle cx="330" cy="150" r="6"></circle>
-                <circle cx="440" cy="124" r="6"></circle>
-                <circle cx="550" cy="96" r="6"></circle>
-              </g>
-
-              <g fill="#8FA48C">
-                <circle cx="110" cy="210" r="3.5"></circle>
-                <circle cx="220" cy="190" r="3.5"></circle>
-                <circle cx="330" cy="172" r="3.5"></circle>
-                <circle cx="440" cy="152" r="3.5"></circle>
-                <circle cx="550" cy="132" r="3.5"></circle>
+              <g fill="#625455" font-family="'Martian Mono', monospace" font-size="12">
+                <circle cx="555" cy="428" r="7" fill="#f46921"></circle>
+                <text x="570" y="433">Number of Predictions</text>
               </g>
             </svg>
           </div>
@@ -170,67 +216,55 @@
     <section id="judgment" class="section judgment">
       <div class="shell">
         <div class="section-head">
-          <div>
-            <p class="eyebrow">Why Sentinel</p>
-            <h2 class="section-title">World-Class Judgment<br>for the Hardest-to-Price Risks</h2>
+          <div class="section-head__main">
+            <p class="eyebrow">Price the Unpriceable</p>
+            <h2 class="section-title">World-Class Judgment for the Hardest-to-Price Risks</h2>
           </div>
-          <div class="section-note">
-            <span class="section-note__grid" aria-hidden="true"></span>
-            <p>Reusable pixel-grid logic drives the hero and the high-signal cards below.</p>
+          <div class="section-head__side">
+            <p>When traditional models fall short, elite forecasting judgment becomes your edge. Sentinel delivers structured intelligence on the geopolitical, regulatory, and tail risks that move markets but resist conventional analysis.</p>
+            <a class="section-link" href="#signup">Let's work together</a>
           </div>
         </div>
 
         <div class="insight-grid">
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card1" data-highlight="#f8e8dc" data-cell-size="46" data-cell-size-mobile="30"></div>
-            <div class="insight-card__chrome">
-              <span class="insight-card__dots" aria-hidden="true"></span>
-              <span class="insight-card__arrow" aria-hidden="true">↗</span>
-            </div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card1" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <span class="insight-card__index">01</span>
+              <p class="insight-card__eyebrow">What you get</p>
               <h3>Custom Assessments</h3>
-              <p>Bespoke analysis calibrated to the risks you actually need to price.</p>
+              <p>Weekly probability updates on the exact questions that matter to your positions.</p>
             </div>
+            <span class="insight-card__arrow" aria-hidden="true"></span>
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card2" data-highlight="#f8e8dc" data-cell-size="46" data-cell-size-mobile="30"></div>
-            <div class="insight-card__chrome">
-              <span class="insight-card__dots" aria-hidden="true"></span>
-              <span class="insight-card__arrow" aria-hidden="true">↗</span>
-            </div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card2" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <span class="insight-card__index">02</span>
-              <h3>Driven Analysis</h3>
-              <p>Probabilistic intelligence that combines deep context with quantitative discipline.</p>
+              <p class="insight-card__eyebrow">What you get</p>
+              <h3>Driver Analysis</h3>
+              <p>Transparent reasoning behind each forecast, identifying the critical factors at play.</p>
             </div>
+            <span class="insight-card__arrow" aria-hidden="true"></span>
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card3" data-highlight="#f8e8dc" data-cell-size="46" data-cell-size-mobile="30"></div>
-            <div class="insight-card__chrome">
-              <span class="insight-card__dots" aria-hidden="true"></span>
-              <span class="insight-card__arrow" aria-hidden="true">↗</span>
-            </div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card3" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <span class="insight-card__index">03</span>
-              <h3>Sensitivity Estimates</h3>
-              <p>Updateable ranges for the variables that move your scenario planning the most.</p>
+              <p class="insight-card__eyebrow">What you get</p>
+              <h3>Sensitivity Indicators</h3>
+              <p>Advance warning of the signals and events that could trigger significant forecast updates.</p>
             </div>
+            <span class="insight-card__arrow" aria-hidden="true"></span>
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card4" data-highlight="#f8e8dc" data-cell-size="46" data-cell-size-mobile="30"></div>
-            <div class="insight-card__chrome">
-              <span class="insight-card__dots" aria-hidden="true"></span>
-              <span class="insight-card__arrow" aria-hidden="true">↗</span>
-            </div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card4" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <span class="insight-card__index">04</span>
+              <p class="insight-card__eyebrow">What you get</p>
               <h3>Built for Your Workflow</h3>
-              <p>Outputs tuned for investment memos, operating reviews, and executive decision cycles.</p>
+              <p>Integrate forecasts directly into your systems or access via dashboard and reports.</p>
             </div>
+            <span class="insight-card__arrow" aria-hidden="true"></span>
           </article>
         </div>
       </div>
@@ -239,33 +273,44 @@
     <section id="briefings" class="section briefings">
       <div class="shell">
         <div class="section-head">
-          <div>
-            <p class="eyebrow">Weekly Briefings</p>
-            <h2 class="section-title">Weekly briefings</h2>
+          <div class="section-head__main">
+            <p class="eyebrow">Insights Straight to Your Inbox</p>
+            <h2 class="section-title">Weekly Briefings</h2>
           </div>
-          <div class="section-note">
-            <span class="section-note__grid" aria-hidden="true"></span>
-            <p>Short-format briefs for decision-makers tracking frontier risk in real time.</p>
+          <div class="section-head__side">
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
+            <a class="section-link" href="#signup">Sign up</a>
           </div>
         </div>
+      </div>
 
+      <div class="briefings__viewport">
         <div class="briefings__rail">
           <article class="brief-card brief-card--maroon clipped-card">
-            <span class="brief-card__meta">Issue 047</span>
-            <h3>MENA Risk Watch</h3>
-            <p>Proxy conflict spillovers remain elevated as shipping disruption probabilities rise across the Red Sea corridor.</p>
+            <div class="brief-card__content">
+              <p class="brief-card__eyebrow">Briefing</p>
+              <h3>Global Risks Watch</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
+            </div>
+            <span class="brief-card__arrow" aria-hidden="true"></span>
           </article>
 
           <article class="brief-card brief-card--sage clipped-card">
-            <span class="brief-card__meta">Issue 046</span>
-            <h3>Global Shift Brief</h3>
-            <p>Export-control circumvention networks in Southeast Asia are testing the next phase of AI supply-chain enforcement.</p>
+            <div class="brief-card__content">
+              <p class="brief-card__eyebrow">Briefing</p>
+              <h3>Global Risks Watch</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
+            </div>
+            <span class="brief-card__arrow" aria-hidden="true"></span>
           </article>
 
-          <article class="brief-card brief-card--sky clipped-card">
-            <span class="brief-card__meta">Issue 045</span>
-            <h3>Climate &amp; Nature</h3>
-            <p>Food-system volatility is now a first-order geopolitical risk, not just a downstream macro indicator.</p>
+          <article class="brief-card brief-card--blue clipped-card">
+            <div class="brief-card__content">
+              <p class="brief-card__eyebrow">Briefing</p>
+              <h3>Global Risks Watch</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
+            </div>
+            <span class="brief-card__arrow" aria-hidden="true"></span>
           </article>
         </div>
       </div>
@@ -274,84 +319,84 @@
     <section id="leadership" class="section leadership">
       <div class="shell">
         <div class="section-head">
-          <div>
-            <p class="eyebrow">Leadership</p>
-            <h2 class="section-title">The minds behind<br>Sentinel</h2>
+          <div class="section-head__main">
+            <p class="eyebrow">World Class Forecasters</p>
+            <h2 class="section-title">Leadership</h2>
           </div>
-          <div class="section-note">
-            <span class="section-note__grid" aria-hidden="true"></span>
-            <p>Forecasting infrastructure, geopolitical analysis, and decision-science rigor.</p>
+          <div class="section-head__side">
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
+            <a class="section-link" href="#signup">See open roles</a>
           </div>
         </div>
 
         <div class="leadership__list">
           <article class="leader">
             <div class="leader__photo clipped-card">
-              <img src="assets/team/analyst-1.svg" alt="Nuño Sempere">
+              <img src="assets/figma/leader-nuno.png" alt="Nuño Sempere" width="321" height="286">
             </div>
             <div class="leader__body">
               <h3>Nuño Sempere</h3>
-              <p class="leader__role">Head of Quantitative Research</p>
-              <p class="leader__bio">Quantitative researcher and forecaster. Previously built forecasting infrastructure at QURI with a focus on calibration, estimation, and decision-relevant modelling.</p>
+              <p class="leader__role">Role Goes Here</p>
+              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Nulla luctus sed molestie odio dolor pellentesque augue. Id nibh vulputate quis vel venenatis. Sed tortor velit vulputate adipiscing. Penatibus proin iaculis orci purus feugiat sed integer habitasse. Mollis orci eu tincidunt lacus laoreet sit est.</p>
             </div>
           </article>
 
           <article class="leader">
             <div class="leader__photo clipped-card">
-              <img src="assets/team/analyst-2.svg" alt="Rai Sur">
+              <img src="assets/figma/leader-rai.png" alt="Rai Sur" width="320" height="285">
             </div>
             <div class="leader__body">
               <h3>Rai Sur</h3>
-              <p class="leader__role">Head of Geopolitical Analysis</p>
-              <p class="leader__bio">Former intelligence analyst with deep expertise in great-power competition, emerging-market risk, and actionable strategic briefings for investors and operators.</p>
+              <p class="leader__role">Role Goes Here</p>
+              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Nulla luctus sed molestie odio dolor pellentesque augue. Id nibh vulputate quis vel venenatis. Sed tortor velit vulputate adipiscing. Penatibus proin iaculis orci purus feugiat sed integer habitasse. Mollis orci eu tincidunt lacus laoreet sit est.</p>
             </div>
           </article>
         </div>
+
+        <div class="leadership__divider" aria-hidden="true"></div>
       </div>
     </section>
 
     <section class="section foresight">
       <div class="shell">
         <div class="section-head">
-          <div>
-            <p class="eyebrow">Foresight Team</p>
-            <h2 class="section-title section-title--compact">Regional specialists and applied forecasters.</h2>
+          <div class="section-head__main">
+            <p class="eyebrow">World Class Forecasters</p>
+            <h2 class="section-title">Foresight Team</h2>
           </div>
-          <div class="section-note">
-            <span class="section-note__grid" aria-hidden="true"></span>
-            <p>Embedded expertise across Eurasia, frontier technology, and climate-security dynamics.</p>
+          <div class="section-head__side">
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
+            <a class="section-link" href="#signup">See open roles</a>
           </div>
         </div>
 
         <div class="foresight__grid">
           <article class="foresight__member">
-            <h3>Victor Koper</h3>
-            <p class="foresight__role">Eastern Europe</p>
-            <p>Conflict trends, state capacity, and sanctions adaptation.</p>
+            <h3>Vidur Kapur</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
           </article>
           <article class="foresight__member">
-            <h3>Tulga Bilge</h3>
-            <p class="foresight__role">Central Asia</p>
-            <p>Critical minerals, logistics corridors, and cross-border coercion.</p>
+            <h3>Tolga Bilge</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
           </article>
           <article class="foresight__member">
-            <h3>Leif Sigurdsson</h3>
-            <p class="foresight__role">Nordic &amp; Arctic</p>
-            <p>Shipping risk, energy resilience, and polar infrastructure.</p>
+            <h3>Leif Sigrúnsson</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
           </article>
         </div>
 
         <div id="signup" class="signup clipped-card">
+          <div class="signup__pixels pixel-surface" aria-hidden="true" data-pattern="signup" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
           <div class="signup__copy">
-            <p class="eyebrow eyebrow--light">Stay Informed</p>
+            <p class="eyebrow eyebrow--light">Sign up to our weekly briefings</p>
             <h2 class="signup__title">Insights delivered straight to your inbox</h2>
-            <p class="signup__text">A concise weekly briefing for operators, investors, and teams navigating high-uncertainty environments.</p>
+            <p class="signup__text">Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit amet.</p>
           </div>
 
           <form class="signup__form" action="#" method="post">
             <label class="signup__field">
               <span class="sr-only">Email address</span>
-              <input type="email" name="email" placeholder="Enter your email" required>
+              <input type="email" name="email" placeholder="example@email.com" required>
             </label>
             <button class="button button--dark" type="submit">Sign up</button>
           </form>
@@ -363,41 +408,45 @@
   <footer class="footer">
     <div class="shell footer__inner">
       <div class="footer__brand">
-        <a class="footer__logo" href="#hero">
-          <span class="site-nav__brand-mark site-nav__brand-mark--dark">S</span>
-          <span class="site-nav__brand-word site-nav__brand-word--dark">Sentinel</span>
+        <a class="footer__logo" href="#hero" aria-label="Sentinel home">
+          <img class="footer__logo-mark" src="assets/figma/hero-brand.png" alt="" width="90" height="90">
+          <div class="footer__logo-copy">
+            <span class="footer__wordmark">Sentinel</span>
+            <span class="footer__tagline">Open-source resilience for an uncertain world</span>
+          </div>
         </a>
-        <p class="footer__tagline">Geopolitical intelligence for a complex world.</p>
+        <div class="footer__meta">
+          <p>All right reserved</p>
+          <p>&copy; Sentinel Research, 2025</p>
+        </div>
       </div>
 
-      <div class="footer__links">
-        <a href="#research">Research</a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#hero">About</a>
         <a href="#briefings">Writing</a>
-        <a href="#leadership">Team</a>
-        <a href="#signup">Contact</a>
-      </div>
-
-      <p class="footer__meta">© 2026 Sentinel Intelligence Ltd. All rights reserved.</p>
+        <a href="#research">Open Source</a>
+        <a href="#leadership">Careers</a>
+      </nav>
     </div>
   </footer>
 
   <script src="grid-effect.js"></script>
   <script>
     (function () {
-      var toggle = document.querySelector('.site-nav__toggle');
-      var links = document.querySelector('.site-nav__links');
-      if (!toggle || !links) return;
+      var button = document.querySelector('.hero__menu-button');
+      var menu = document.querySelector('.hero__menu');
+      if (!button || !menu) return;
 
-      toggle.addEventListener('click', function () {
-        var expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        links.classList.toggle('is-open');
+      button.addEventListener('click', function () {
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        menu.classList.toggle('is-open', !expanded);
       });
 
-      links.querySelectorAll('a').forEach(function (link) {
+      menu.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
-          toggle.setAttribute('aria-expanded', 'false');
-          links.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
         });
       });
     })();
