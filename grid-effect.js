@@ -1,192 +1,251 @@
-/**
- * Sentinel Hero Grid Effect
- *
- * Generates a grid of cells over the hero section. Cells near the cursor
- * desaturate in a 5x5 stepped pattern using Chebyshev distance.
- *
- * Figma spec (saturation % per ring):
- *   Ring 0 (center):  40%
- *   Ring 1 (8 cells):  70%
- *   Ring 2 (16 cells): 98%
- *   Everything else:  100% (unchanged)
- */
 (function () {
   'use strict';
 
-  var CELL_SIZE_DESKTOP = 48;
-  var CELL_SIZE_MOBILE = 36;
   var TOUCH_FADE_MS = 600;
+  var RING_SATURATION = ['40%', '70%', '98%'];
+  var DEFAULT_CELL_SIZE = 24;
+  var DEFAULT_MOBILE_CELL_SIZE = 18;
+  var PALETTES = {
+    'warm-a': ['#98323a', '#f1dac9', '#ef6736', '#c24f3c'],
+    'warm-b': ['#c85649', '#f1dfd1', '#ea7a49', '#a03337'],
+    'warm-c': ['#a63838', '#f0ded2', '#f06a35', '#be4c3c'],
+    'warm-d': ['#b34136', '#efd9cb', '#ec7b48', '#913237']
+  };
 
-  // Saturation % per Chebyshev ring from cursor cell
-  var RING_SAT = ['40%', '70%', '98%'];
-
-  var hero, grid;
-  var cells = [];
-  var cols = 0, rows = 0;
-  var cellSize = CELL_SIZE_DESKTOP;
-  var heroRect = null;
-  var activeSet = new Set();
-  var rafId = null;
-  var cursorX = -9999, cursorY = -9999;
-  var needsUpdate = false;
-  var touchTimeout = null;
+  var surfaces = [];
 
   function init() {
-    hero = document.getElementById('hero');
-    grid = hero.querySelector('.hero__grid');
-    if (!hero || !grid) return;
+    var nodes = document.querySelectorAll('.pixel-surface');
+    nodes.forEach(function (node) {
+      surfaces.push(createSurface(node));
+    });
 
-    buildGrid();
-    attachListeners();
+    if (!surfaces.length) return;
 
-    window.addEventListener('resize', debounce(rebuild, 200));
+    var debouncedRebuild = debounce(function () {
+      surfaces.forEach(buildSurface);
+    }, 150);
+
+    window.addEventListener('resize', debouncedRebuild);
   }
 
-  function buildGrid() {
-    cellSize = window.innerWidth <= 768 ? CELL_SIZE_MOBILE : CELL_SIZE_DESKTOP;
+  function createSurface(node) {
+    var target = resolveTarget(node);
+    var state = {
+      node: node,
+      target: target,
+      cells: [],
+      active: new Set(),
+      cols: 0,
+      rows: 0,
+      cellSize: 0,
+      rect: null,
+      cursorX: -9999,
+      cursorY: -9999,
+      rafId: null,
+      needsUpdate: false,
+      touchTimeout: null
+    };
 
-    var w = hero.offsetWidth;
-    var h = hero.offsetHeight;
-    cols = Math.ceil(w / cellSize);
-    rows = Math.ceil(h / cellSize);
+    buildSurface(state);
+    attachListeners(state);
 
-    grid.style.gridTemplateColumns = 'repeat(' + cols + ', ' + cellSize + 'px)';
-    grid.style.gridTemplateRows = 'repeat(' + rows + ', ' + cellSize + 'px)';
+    return state;
+  }
 
-    var frag = document.createDocumentFragment();
-    cells = [];
+  function resolveTarget(node) {
+    if (node.dataset.listenParent) {
+      return document.querySelector(node.dataset.listenParent) || node.parentElement || node;
+    }
+    return node.parentElement || node;
+  }
 
-    for (var r = 0; r < rows; r++) {
-      for (var c = 0; c < cols; c++) {
+  function buildSurface(state) {
+    var node = state.node;
+    var width = node.offsetWidth;
+    var height = node.offsetHeight;
+    var cellSize = getCellSize(node);
+    var cols = Math.ceil(width / cellSize);
+    var rows = Math.ceil(height / cellSize);
+    var fragment = document.createDocumentFragment();
+
+    state.cellSize = cellSize;
+    state.cols = cols;
+    state.rows = rows;
+    state.cells = [];
+    state.active.clear();
+
+    node.style.gridTemplateColumns = 'repeat(' + cols + ', ' + cellSize + 'px)';
+    node.style.gridTemplateRows = 'repeat(' + rows + ', ' + cellSize + 'px)';
+    node.innerHTML = '';
+
+    for (var row = 0; row < rows; row += 1) {
+      for (var col = 0; col < cols; col += 1) {
         var cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        frag.appendChild(cell);
-        cells.push(cell);
+        cell.className = 'pixel-cell';
+        cell.style.backgroundColor = getBaseColor(node, col, row, cols, rows);
+        fragment.appendChild(cell);
+        state.cells.push(cell);
       }
     }
 
-    grid.innerHTML = '';
-    grid.appendChild(frag);
-    activeSet.clear();
-    cacheRect();
+    node.appendChild(fragment);
+    state.rect = state.target.getBoundingClientRect();
   }
 
-  function rebuild() {
-    buildGrid();
-    cursorX = -9999;
-    cursorY = -9999;
+  function getCellSize(node) {
+    var desktop = parseInt(node.dataset.cellSize || DEFAULT_CELL_SIZE, 10);
+    var mobile = parseInt(node.dataset.cellSizeMobile || DEFAULT_MOBILE_CELL_SIZE, 10);
+    return window.innerWidth <= 768 ? mobile : desktop;
   }
 
-  function cacheRect() {
-    heroRect = hero.getBoundingClientRect();
+  function getBaseColor(node, col, row, cols, rows) {
+    if ((node.dataset.mode || 'solid') === 'solid') {
+      return node.dataset.baseColor || '#E8753A';
+    }
+
+    var palette = PALETTES[node.dataset.palette] || PALETTES['warm-a'];
+    var x = cols <= 1 ? 0 : col / (cols - 1);
+    var y = rows <= 1 ? 0 : row / (rows - 1);
+
+    var top = mixHex(palette[0], palette[1], x);
+    var bottom = mixHex(palette[2], palette[3], x);
+
+    return mixHex(top, bottom, y);
   }
 
-  function attachListeners() {
-    hero.addEventListener('mousemove', onPointerMove);
-    hero.addEventListener('mouseleave', onPointerLeave);
+  function attachListeners(state) {
+    state.target.addEventListener('mousemove', function (event) {
+      onPointerMove(state, event.clientX, event.clientY);
+    });
 
-    hero.addEventListener('touchstart', onTouchStart, { passive: true });
-    hero.addEventListener('touchmove', onTouchMove, { passive: true });
-    hero.addEventListener('touchend', onPointerLeave);
+    state.target.addEventListener('mouseleave', function () {
+      resetSurface(state);
+    });
 
-    window.addEventListener('scroll', debounce(cacheRect, 100), { passive: true });
+    state.target.addEventListener('touchstart', function (event) {
+      var touch = event.touches[0];
+      onTouchMove(state, touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    state.target.addEventListener('touchmove', function (event) {
+      var touch = event.touches[0];
+      onTouchMove(state, touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    state.target.addEventListener('touchend', function () {
+      resetSurface(state);
+    });
+
+    window.addEventListener('scroll', debounce(function () {
+      state.rect = state.target.getBoundingClientRect();
+    }, 80), { passive: true });
   }
 
-  function onPointerMove(e) {
-    if (!heroRect) cacheRect();
-    cursorX = e.clientX - heroRect.left;
-    cursorY = e.clientY - heroRect.top;
-    scheduleUpdate();
+  function onPointerMove(state, clientX, clientY) {
+    if (!state.rect) state.rect = state.target.getBoundingClientRect();
+
+    state.cursorX = clientX - state.rect.left;
+    state.cursorY = clientY - state.rect.top;
+    scheduleUpdate(state);
   }
 
-  function onTouchStart(e) {
-    if (touchTimeout) clearTimeout(touchTimeout);
-    var touch = e.touches[0];
-    if (!heroRect) cacheRect();
-    cursorX = touch.clientX - heroRect.left;
-    cursorY = touch.clientY - heroRect.top;
-    scheduleUpdate();
-
-    touchTimeout = setTimeout(function () {
-      onPointerLeave();
+  function onTouchMove(state, clientX, clientY) {
+    if (state.touchTimeout) clearTimeout(state.touchTimeout);
+    onPointerMove(state, clientX, clientY);
+    state.touchTimeout = setTimeout(function () {
+      resetSurface(state);
     }, TOUCH_FADE_MS);
   }
 
-  function onTouchMove(e) {
-    if (touchTimeout) clearTimeout(touchTimeout);
-    var touch = e.touches[0];
-    if (!heroRect) cacheRect();
-    cursorX = touch.clientX - heroRect.left;
-    cursorY = touch.clientY - heroRect.top;
-    scheduleUpdate();
+  function scheduleUpdate(state) {
+    if (state.needsUpdate) return;
 
-    touchTimeout = setTimeout(function () {
-      onPointerLeave();
-    }, TOUCH_FADE_MS);
-  }
-
-  function onPointerLeave() {
-    cursorX = -9999;
-    cursorY = -9999;
-    activeSet.forEach(function (idx) {
-      cells[idx].style.filter = '';
+    state.needsUpdate = true;
+    state.rafId = window.requestAnimationFrame(function () {
+      updateSurface(state);
     });
-    activeSet.clear();
-    needsUpdate = false;
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
   }
 
-  function scheduleUpdate() {
-    if (!needsUpdate) {
-      needsUpdate = true;
-      rafId = requestAnimationFrame(updateGrid);
+  function updateSurface(state) {
+    var currentCol = Math.floor(state.cursorX / state.cellSize);
+    var currentRow = Math.floor(state.cursorY / state.cellSize);
+    var maxRing = RING_SATURATION.length - 1;
+    var nextActive = new Set();
+
+    state.needsUpdate = false;
+    state.rafId = null;
+
+    if (currentCol < 0 || currentRow < 0 || currentCol >= state.cols || currentRow >= state.rows) {
+      resetSurface(state);
+      return;
     }
-  }
 
-  function updateGrid() {
-    needsUpdate = false;
-    rafId = null;
+    for (var row = Math.max(0, currentRow - maxRing); row <= Math.min(state.rows - 1, currentRow + maxRing); row += 1) {
+      for (var col = Math.max(0, currentCol - maxRing); col <= Math.min(state.cols - 1, currentCol + maxRing); col += 1) {
+        var ring = Math.max(Math.abs(col - currentCol), Math.abs(row - currentRow));
+        if (ring > maxRing) continue;
 
-    var curCol = Math.floor(cursorX / cellSize);
-    var curRow = Math.floor(cursorY / cellSize);
-
-    var newActive = new Set();
-    var maxRing = RING_SAT.length - 1;
-
-    var rMin = Math.max(0, curRow - maxRing);
-    var rMax = Math.min(rows - 1, curRow + maxRing);
-    var cMin = Math.max(0, curCol - maxRing);
-    var cMax = Math.min(cols - 1, curCol + maxRing);
-
-    for (var r = rMin; r <= rMax; r++) {
-      for (var c = cMin; c <= cMax; c++) {
-        var ring = Math.max(Math.abs(c - curCol), Math.abs(r - curRow));
-        if (ring <= maxRing) {
-          var idx = r * cols + c;
-          newActive.add(idx);
-          cells[idx].style.filter = 'saturate(' + RING_SAT[ring] + ')';
-        }
+        var index = row * state.cols + col;
+        nextActive.add(index);
+        state.cells[index].style.filter = 'saturate(' + RING_SATURATION[ring] + ')';
       }
     }
 
-    // Reset cells that left the active set
-    activeSet.forEach(function (idx) {
-      if (!newActive.has(idx)) {
-        cells[idx].style.filter = '';
+    state.active.forEach(function (index) {
+      if (!nextActive.has(index)) {
+        state.cells[index].style.filter = '';
       }
     });
 
-    activeSet = newActive;
+    state.active = nextActive;
   }
 
-  function debounce(fn, ms) {
-    var timer;
+  function resetSurface(state) {
+    if (state.touchTimeout) {
+      clearTimeout(state.touchTimeout);
+      state.touchTimeout = null;
+    }
+
+    if (state.rafId) {
+      window.cancelAnimationFrame(state.rafId);
+      state.rafId = null;
+    }
+
+    state.needsUpdate = false;
+    state.cursorX = -9999;
+    state.cursorY = -9999;
+
+    state.active.forEach(function (index) {
+      state.cells[index].style.filter = '';
+    });
+
+    state.active.clear();
+  }
+
+  function mixHex(a, b, amount) {
+    var colorA = hexToRgb(a);
+    var colorB = hexToRgb(b);
+    var r = Math.round(colorA.r + ((colorB.r - colorA.r) * amount));
+    var g = Math.round(colorA.g + ((colorB.g - colorA.g) * amount));
+    var bl = Math.round(colorA.b + ((colorB.b - colorA.b) * amount));
+    return 'rgb(' + r + ', ' + g + ', ' + bl + ')';
+  }
+
+  function hexToRgb(hex) {
+    var value = hex.replace('#', '');
+    return {
+      r: parseInt(value.slice(0, 2), 16),
+      g: parseInt(value.slice(2, 4), 16),
+      b: parseInt(value.slice(4, 6), 16)
+    };
+  }
+
+  function debounce(fn, delay) {
+    var timeout = null;
     return function () {
-      clearTimeout(timer);
-      timer = setTimeout(fn, ms);
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, delay);
     };
   }
 

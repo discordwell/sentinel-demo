@@ -10,360 +10,394 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header id="hero" class="hero">
+    <nav class="site-nav">
+      <div class="site-nav__inner shell">
+        <a class="site-nav__brand" href="#hero" aria-label="Sentinel home">
+          <span class="site-nav__brand-mark">S</span>
+          <span class="site-nav__brand-word">Sentinel</span>
+        </a>
+        <button class="site-nav__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="site-nav__links">
+          <a href="#research">Research</a>
+          <a href="#track-record">Track Record</a>
+          <a href="#briefings">Briefings</a>
+          <a href="#leadership">Leadership</a>
+          <a class="site-nav__cta" href="#signup">Subscribe</a>
+        </div>
+      </div>
+    </nav>
 
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo"><span class="nav__logo-icon">S</span>SENTINEL</a>
-      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="nav__menu">
-        <a href="#research">Research</a>
-        <a href="#track-record">Track Record</a>
-        <a href="#briefings">Briefings</a>
-        <a href="#leadership">Team</a>
-        <a href="#newsletter">Subscribe</a>
+    <div
+      class="hero__pixels pixel-surface"
+      aria-hidden="true"
+      data-mode="solid"
+      data-base-color="#E8753A"
+      data-cell-size="52"
+      data-cell-size-mobile="36"
+      data-listen-parent="#hero"
+    ></div>
+
+    <div class="hero__content shell">
+      <div class="hero__panel clipped-card">
+        <p class="eyebrow eyebrow--light">Geopolitical Intelligence</p>
+        <h1 class="hero__title">Sentinel is building open-source resilience for an uncertain world.</h1>
+        <a class="button button--light" href="#briefings">Read the latest brief</a>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero -->
-  <section id="hero" class="hero">
-    <div class="hero__grid" aria-hidden="true"></div>
-    <div class="hero__content">
-      <p class="hero__label">Geopolitical Intelligence</p>
-      <h1 class="hero__headline">Sentinel is building open-source resilience for an uncertain world.</h1>
-      <a href="#newsletter" class="hero__cta">Read the Latest Brief</a>
-    </div>
-  </section>
-
-  <!-- Press Logos -->
-  <section id="press" class="press">
-    <div class="press__inner">
-      <span class="press__label">As featured in</span>
+  <section class="press">
+    <div class="shell press__inner">
+      <p class="press__label">As featured in</p>
       <div class="press__logos">
-        <img src="assets/logos/reuters.svg" alt="Reuters" class="press__logo">
-        <img src="assets/logos/ft.svg" alt="Financial Times" class="press__logo">
-        <img src="assets/logos/wired.svg" alt="WIRED" class="press__logo">
-        <img src="assets/logos/techcrunch.svg" alt="TechCrunch" class="press__logo">
-        <img src="assets/logos/thetimes.svg" alt="The Times" class="press__logo">
+        <img src="assets/logos/reuters.svg" alt="Reuters">
+        <img src="assets/logos/ft.svg" alt="Financial Times">
+        <img src="assets/logos/wired.svg" alt="WIRED">
+        <img src="assets/logos/techcrunch.svg" alt="TechCrunch">
+        <img src="assets/logos/thetimes.svg" alt="The Times">
       </div>
     </div>
   </section>
 
-  <!-- Research Focus Areas -->
-  <section id="research" class="research">
-    <div class="research__inner">
-      <p class="section-label">Research Focus Areas</p>
-      <h2 class="section-heading">World-class foresight,<br>Real-world impact</h2>
-      <div class="research__grid">
-        <div class="research__card research__card--orange">
-          <h3>Geopolitics</h3>
-        </div>
-        <div class="research__card research__card--sage">
-          <h3>Artificial Intelligence</h3>
-        </div>
-        <div class="research__card research__card--mauve">
-          <h3>Economics</h3>
-        </div>
-        <div class="research__card research__card--maroon">
-          <h3>Bio Risks</h3>
-        </div>
-        <div class="research__card research__card--dark">
-          <h3>Technology</h3>
-        </div>
-        <div class="research__card research__card--mint">
-          <h3>Climate &amp; Nature</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Track Record -->
-  <section id="track-record" class="track-record">
-    <div class="track-record__inner">
-      <p class="section-label">Track Record</p>
-      <h2 class="section-heading">Reliable accuracy when<br>you need it most.</h2>
-      <p class="track-record__desc">Our forecasts are scored against real-world outcomes. Sentinel analysts consistently outperform baseline prediction models.</p>
-      <div class="track-record__chart">
-        <svg class="track-record__svg" viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line chart showing forecast accuracy from 2021 to 2025: Sentinel 94%, Superforecasters 87%, Expert Panels 71%, Baseline 58%. Sentinel consistently outperforms all other groups.">
-          <!-- Grid lines -->
-          <line x1="60" y1="40" x2="660" y2="40" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
-          <line x1="60" y1="100" x2="660" y2="100" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
-          <line x1="60" y1="160" x2="660" y2="160" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
-          <line x1="60" y1="220" x2="660" y2="220" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
-          <!-- Y-axis labels -->
-          <text x="50" y="44" text-anchor="end" class="chart-svg__label">100%</text>
-          <text x="50" y="104" text-anchor="end" class="chart-svg__label">80%</text>
-          <text x="50" y="164" text-anchor="end" class="chart-svg__label">60%</text>
-          <text x="50" y="224" text-anchor="end" class="chart-svg__label">40%</text>
-          <!-- X-axis labels -->
-          <text x="60" y="260" text-anchor="middle" class="chart-svg__label">2021</text>
-          <text x="210" y="260" text-anchor="middle" class="chart-svg__label">2022</text>
-          <text x="360" y="260" text-anchor="middle" class="chart-svg__label">2023</text>
-          <text x="510" y="260" text-anchor="middle" class="chart-svg__label">2024</text>
-          <text x="660" y="260" text-anchor="middle" class="chart-svg__label">2025</text>
-          <!-- Sentinel accuracy band highlight -->
-          <rect x="60" y="40" width="600" height="36" fill="rgba(232,117,58,0.08)" rx="2"/>
-          <!-- Baseline line -->
-          <polyline points="60,178 210,172 360,168 510,165 660,160" stroke="rgba(26,26,26,0.2)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
-          <!-- Expert Panels line -->
-          <polyline points="60,140 210,128 360,122 510,118 660,115" stroke="#9E7B7B" stroke-width="2" fill="none"/>
-          <!-- Superforecasters line -->
-          <polyline points="60,108 210,92 360,82 510,76 660,72" stroke="#8B9E8B" stroke-width="2.5" fill="none"/>
-          <!-- Sentinel line -->
-          <polyline points="60,82 210,64 360,56 510,50 660,46" stroke="#E8753A" stroke-width="3" fill="none"/>
-          <!-- Data points — Sentinel -->
-          <circle cx="60" cy="82" r="4" fill="#E8753A"/>
-          <circle cx="210" cy="64" r="4" fill="#E8753A"/>
-          <circle cx="360" cy="56" r="4" fill="#E8753A"/>
-          <circle cx="510" cy="50" r="4" fill="#E8753A"/>
-          <circle cx="660" cy="46" r="4" fill="#E8753A"/>
-          <!-- Data points — Superforecasters -->
-          <circle cx="60" cy="108" r="3" fill="#8B9E8B"/>
-          <circle cx="210" cy="92" r="3" fill="#8B9E8B"/>
-          <circle cx="360" cy="82" r="3" fill="#8B9E8B"/>
-          <circle cx="510" cy="76" r="3" fill="#8B9E8B"/>
-          <circle cx="660" cy="72" r="3" fill="#8B9E8B"/>
-          <!-- Data points — Expert Panels -->
-          <circle cx="60" cy="140" r="3" fill="#9E7B7B"/>
-          <circle cx="210" cy="128" r="3" fill="#9E7B7B"/>
-          <circle cx="360" cy="122" r="3" fill="#9E7B7B"/>
-          <circle cx="510" cy="118" r="3" fill="#9E7B7B"/>
-          <circle cx="660" cy="115" r="3" fill="#9E7B7B"/>
-          <!-- Legend -->
-          <line x1="80" y1="292" x2="100" y2="292" stroke="#E8753A" stroke-width="3"/>
-          <text x="108" y="296" class="chart-svg__legend">Sentinel — 94%</text>
-          <line x1="240" y1="292" x2="260" y2="292" stroke="#8B9E8B" stroke-width="2.5"/>
-          <text x="268" y="296" class="chart-svg__legend">Superforecasters — 87%</text>
-          <line x1="450" y1="292" x2="470" y2="292" stroke="#9E7B7B" stroke-width="2"/>
-          <text x="478" y="296" class="chart-svg__legend">Expert Panels — 71%</text>
-          <line x1="80" y1="310" x2="100" y2="310" stroke="rgba(26,26,26,0.2)" stroke-width="2" stroke-dasharray="6,4"/>
-          <text x="108" y="314" class="chart-svg__legend">Baseline — 58%</text>
-        </svg>
-      </div>
-      <p class="track-record__footnote">Brier score accuracy across 1,200+ resolved forecasts (2021–2025)</p>
-    </div>
-  </section>
-
-  <!-- World-Class Judgment -->
-  <section id="judgment" class="judgment">
-    <div class="judgment__inner">
-      <p class="section-label">Why Sentinel</p>
-      <h2 class="section-heading">World-Class Judgment<br>for the Hardest-to-<br>Price Risks</h2>
-      <div class="judgment__grid">
-        <div class="judgment__card judgment__card--warm">
-          <svg class="judgment__grid-deco" width="94" height="70" viewBox="0 0 94 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#E8753A"/><rect x="12" y="0" width="10" height="10" fill="#E8753A"/><rect x="24" y="0" width="10" height="10" fill="#E8753A"/><rect x="36" y="0" width="10" height="10" fill="#E8753A"/><rect x="48" y="0" width="10" height="10" fill="#E8753A"/><rect x="60" y="0" width="10" height="10" fill="#E8753A"/><rect x="72" y="0" width="10" height="10" fill="#E8753A"/><rect x="84" y="0" width="10" height="10" fill="#E8753A"/><rect x="0" y="12" width="10" height="10" fill="#E8753A"/><rect x="12" y="12" width="10" height="10" fill="#E8753A"/><rect x="24" y="12" width="10" height="10" fill="#E8753A"/><rect x="36" y="12" width="10" height="10" fill="#E6753C"/><rect x="48" y="12" width="10" height="10" fill="#E6753C"/><rect x="60" y="12" width="10" height="10" fill="#E6753C"/><rect x="72" y="12" width="10" height="10" fill="#E6753C"/><rect x="84" y="12" width="10" height="10" fill="#E6753C"/><rect x="0" y="24" width="10" height="10" fill="#E8753A"/><rect x="12" y="24" width="10" height="10" fill="#E8753A"/><rect x="24" y="24" width="10" height="10" fill="#E8753A"/><rect x="36" y="24" width="10" height="10" fill="#E6753C"/><rect x="48" y="24" width="10" height="10" fill="#CC7B52"/><rect x="60" y="24" width="10" height="10" fill="#CC7B52"/><rect x="72" y="24" width="10" height="10" fill="#CC7B52"/><rect x="84" y="24" width="10" height="10" fill="#E6753C"/><rect x="0" y="36" width="10" height="10" fill="#E8753A"/><rect x="12" y="36" width="10" height="10" fill="#E8753A"/><rect x="24" y="36" width="10" height="10" fill="#E8753A"/><rect x="36" y="36" width="10" height="10" fill="#E6753C"/><rect x="48" y="36" width="10" height="10" fill="#CC7B52"/><rect x="60" y="36" width="10" height="10" fill="#AF816A"/><rect x="72" y="36" width="10" height="10" fill="#CC7B52"/><rect x="84" y="36" width="10" height="10" fill="#E6753C"/><rect x="0" y="48" width="10" height="10" fill="#E8753A"/><rect x="12" y="48" width="10" height="10" fill="#E8753A"/><rect x="24" y="48" width="10" height="10" fill="#E8753A"/><rect x="36" y="48" width="10" height="10" fill="#E6753C"/><rect x="48" y="48" width="10" height="10" fill="#CC7B52"/><rect x="60" y="48" width="10" height="10" fill="#CC7B52"/><rect x="72" y="48" width="10" height="10" fill="#CC7B52"/><rect x="84" y="48" width="10" height="10" fill="#E6753C"/><rect x="0" y="60" width="10" height="10" fill="#E8753A"/><rect x="12" y="60" width="10" height="10" fill="#E8753A"/><rect x="24" y="60" width="10" height="10" fill="#E8753A"/><rect x="36" y="60" width="10" height="10" fill="#E6753C"/><rect x="48" y="60" width="10" height="10" fill="#E6753C"/><rect x="60" y="60" width="10" height="10" fill="#E6753C"/><rect x="72" y="60" width="10" height="10" fill="#E6753C"/><rect x="84" y="60" width="10" height="10" fill="#E6753C"/></svg>
-          <span class="judgment__number">01</span>
-          <h3>Custom Assessments</h3>
-          <p>Bespoke analysis tailored to your organisation's specific risk exposure and strategic priorities.</p>
-        </div>
-        <div class="judgment__card judgment__card--warm">
-          <svg class="judgment__grid-deco" width="94" height="70" viewBox="0 0 94 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#E8753A"/><rect x="12" y="0" width="10" height="10" fill="#E8753A"/><rect x="24" y="0" width="10" height="10" fill="#E8753A"/><rect x="36" y="0" width="10" height="10" fill="#E6753C"/><rect x="48" y="0" width="10" height="10" fill="#E6753C"/><rect x="60" y="0" width="10" height="10" fill="#E6753C"/><rect x="72" y="0" width="10" height="10" fill="#E6753C"/><rect x="84" y="0" width="10" height="10" fill="#E6753C"/><rect x="0" y="12" width="10" height="10" fill="#E8753A"/><rect x="12" y="12" width="10" height="10" fill="#E8753A"/><rect x="24" y="12" width="10" height="10" fill="#E8753A"/><rect x="36" y="12" width="10" height="10" fill="#E6753C"/><rect x="48" y="12" width="10" height="10" fill="#CC7B52"/><rect x="60" y="12" width="10" height="10" fill="#CC7B52"/><rect x="72" y="12" width="10" height="10" fill="#CC7B52"/><rect x="84" y="12" width="10" height="10" fill="#E6753C"/><rect x="0" y="24" width="10" height="10" fill="#E8753A"/><rect x="12" y="24" width="10" height="10" fill="#E8753A"/><rect x="24" y="24" width="10" height="10" fill="#E8753A"/><rect x="36" y="24" width="10" height="10" fill="#E6753C"/><rect x="48" y="24" width="10" height="10" fill="#CC7B52"/><rect x="60" y="24" width="10" height="10" fill="#AF816A"/><rect x="72" y="24" width="10" height="10" fill="#CC7B52"/><rect x="84" y="24" width="10" height="10" fill="#E6753C"/><rect x="0" y="36" width="10" height="10" fill="#E8753A"/><rect x="12" y="36" width="10" height="10" fill="#E8753A"/><rect x="24" y="36" width="10" height="10" fill="#E8753A"/><rect x="36" y="36" width="10" height="10" fill="#E6753C"/><rect x="48" y="36" width="10" height="10" fill="#CC7B52"/><rect x="60" y="36" width="10" height="10" fill="#CC7B52"/><rect x="72" y="36" width="10" height="10" fill="#CC7B52"/><rect x="84" y="36" width="10" height="10" fill="#E6753C"/><rect x="0" y="48" width="10" height="10" fill="#E8753A"/><rect x="12" y="48" width="10" height="10" fill="#E8753A"/><rect x="24" y="48" width="10" height="10" fill="#E8753A"/><rect x="36" y="48" width="10" height="10" fill="#E6753C"/><rect x="48" y="48" width="10" height="10" fill="#E6753C"/><rect x="60" y="48" width="10" height="10" fill="#E6753C"/><rect x="72" y="48" width="10" height="10" fill="#E6753C"/><rect x="84" y="48" width="10" height="10" fill="#E6753C"/><rect x="0" y="60" width="10" height="10" fill="#E8753A"/><rect x="12" y="60" width="10" height="10" fill="#E8753A"/><rect x="24" y="60" width="10" height="10" fill="#E8753A"/><rect x="36" y="60" width="10" height="10" fill="#E8753A"/><rect x="48" y="60" width="10" height="10" fill="#E8753A"/><rect x="60" y="60" width="10" height="10" fill="#E8753A"/><rect x="72" y="60" width="10" height="10" fill="#E8753A"/><rect x="84" y="60" width="10" height="10" fill="#E8753A"/></svg>
-          <span class="judgment__number">02</span>
-          <h3>Driven Analysis</h3>
-          <p>Evidence-based intelligence combining quantitative models with deep regional expertise.</p>
-        </div>
-        <div class="judgment__card judgment__card--warm">
-          <svg class="judgment__grid-deco" width="94" height="70" viewBox="0 0 94 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#E8753A"/><rect x="12" y="0" width="10" height="10" fill="#E8753A"/><rect x="24" y="0" width="10" height="10" fill="#E6753C"/><rect x="36" y="0" width="10" height="10" fill="#CC7B52"/><rect x="48" y="0" width="10" height="10" fill="#CC7B52"/><rect x="60" y="0" width="10" height="10" fill="#CC7B52"/><rect x="72" y="0" width="10" height="10" fill="#E6753C"/><rect x="84" y="0" width="10" height="10" fill="#E8753A"/><rect x="0" y="12" width="10" height="10" fill="#E8753A"/><rect x="12" y="12" width="10" height="10" fill="#E8753A"/><rect x="24" y="12" width="10" height="10" fill="#E6753C"/><rect x="36" y="12" width="10" height="10" fill="#CC7B52"/><rect x="48" y="12" width="10" height="10" fill="#AF816A"/><rect x="60" y="12" width="10" height="10" fill="#CC7B52"/><rect x="72" y="12" width="10" height="10" fill="#E6753C"/><rect x="84" y="12" width="10" height="10" fill="#E8753A"/><rect x="0" y="24" width="10" height="10" fill="#E8753A"/><rect x="12" y="24" width="10" height="10" fill="#E8753A"/><rect x="24" y="24" width="10" height="10" fill="#E6753C"/><rect x="36" y="24" width="10" height="10" fill="#CC7B52"/><rect x="48" y="24" width="10" height="10" fill="#CC7B52"/><rect x="60" y="24" width="10" height="10" fill="#CC7B52"/><rect x="72" y="24" width="10" height="10" fill="#E6753C"/><rect x="84" y="24" width="10" height="10" fill="#E8753A"/><rect x="0" y="36" width="10" height="10" fill="#E8753A"/><rect x="12" y="36" width="10" height="10" fill="#E8753A"/><rect x="24" y="36" width="10" height="10" fill="#E6753C"/><rect x="36" y="36" width="10" height="10" fill="#E6753C"/><rect x="48" y="36" width="10" height="10" fill="#E6753C"/><rect x="60" y="36" width="10" height="10" fill="#E6753C"/><rect x="72" y="36" width="10" height="10" fill="#E6753C"/><rect x="84" y="36" width="10" height="10" fill="#E8753A"/><rect x="0" y="48" width="10" height="10" fill="#E8753A"/><rect x="12" y="48" width="10" height="10" fill="#E8753A"/><rect x="24" y="48" width="10" height="10" fill="#E8753A"/><rect x="36" y="48" width="10" height="10" fill="#E8753A"/><rect x="48" y="48" width="10" height="10" fill="#E8753A"/><rect x="60" y="48" width="10" height="10" fill="#E8753A"/><rect x="72" y="48" width="10" height="10" fill="#E8753A"/><rect x="84" y="48" width="10" height="10" fill="#E8753A"/><rect x="0" y="60" width="10" height="10" fill="#E8753A"/><rect x="12" y="60" width="10" height="10" fill="#E8753A"/><rect x="24" y="60" width="10" height="10" fill="#E8753A"/><rect x="36" y="60" width="10" height="10" fill="#E8753A"/><rect x="48" y="60" width="10" height="10" fill="#E8753A"/><rect x="60" y="60" width="10" height="10" fill="#E8753A"/><rect x="72" y="60" width="10" height="10" fill="#E8753A"/><rect x="84" y="60" width="10" height="10" fill="#E8753A"/></svg>
-          <span class="judgment__number">03</span>
-          <h3>Sensitivity Estimates</h3>
-          <p>Calibrated probability ranges for key variables, updated as new information emerges.</p>
-        </div>
-        <div class="judgment__card judgment__card--warm">
-          <svg class="judgment__grid-deco" width="94" height="70" viewBox="0 0 94 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#E8753A"/><rect x="12" y="0" width="10" height="10" fill="#E8753A"/><rect x="24" y="0" width="10" height="10" fill="#E8753A"/><rect x="36" y="0" width="10" height="10" fill="#E8753A"/><rect x="48" y="0" width="10" height="10" fill="#E8753A"/><rect x="60" y="0" width="10" height="10" fill="#E8753A"/><rect x="72" y="0" width="10" height="10" fill="#E8753A"/><rect x="84" y="0" width="10" height="10" fill="#E8753A"/><rect x="0" y="12" width="10" height="10" fill="#E8753A"/><rect x="12" y="12" width="10" height="10" fill="#E8753A"/><rect x="24" y="12" width="10" height="10" fill="#E8753A"/><rect x="36" y="12" width="10" height="10" fill="#E8753A"/><rect x="48" y="12" width="10" height="10" fill="#E8753A"/><rect x="60" y="12" width="10" height="10" fill="#E8753A"/><rect x="72" y="12" width="10" height="10" fill="#E8753A"/><rect x="84" y="12" width="10" height="10" fill="#E8753A"/><rect x="0" y="24" width="10" height="10" fill="#E8753A"/><rect x="12" y="24" width="10" height="10" fill="#E8753A"/><rect x="24" y="24" width="10" height="10" fill="#E8753A"/><rect x="36" y="24" width="10" height="10" fill="#E8753A"/><rect x="48" y="24" width="10" height="10" fill="#E6753C"/><rect x="60" y="24" width="10" height="10" fill="#E6753C"/><rect x="72" y="24" width="10" height="10" fill="#E6753C"/><rect x="84" y="24" width="10" height="10" fill="#E6753C"/><rect x="0" y="36" width="10" height="10" fill="#E8753A"/><rect x="12" y="36" width="10" height="10" fill="#E8753A"/><rect x="24" y="36" width="10" height="10" fill="#E8753A"/><rect x="36" y="36" width="10" height="10" fill="#E8753A"/><rect x="48" y="36" width="10" height="10" fill="#E6753C"/><rect x="60" y="36" width="10" height="10" fill="#CC7B52"/><rect x="72" y="36" width="10" height="10" fill="#CC7B52"/><rect x="84" y="36" width="10" height="10" fill="#CC7B52"/><rect x="0" y="48" width="10" height="10" fill="#E8753A"/><rect x="12" y="48" width="10" height="10" fill="#E8753A"/><rect x="24" y="48" width="10" height="10" fill="#E8753A"/><rect x="36" y="48" width="10" height="10" fill="#E8753A"/><rect x="48" y="48" width="10" height="10" fill="#E6753C"/><rect x="60" y="48" width="10" height="10" fill="#CC7B52"/><rect x="72" y="48" width="10" height="10" fill="#AF816A"/><rect x="84" y="48" width="10" height="10" fill="#CC7B52"/><rect x="0" y="60" width="10" height="10" fill="#E8753A"/><rect x="12" y="60" width="10" height="10" fill="#E8753A"/><rect x="24" y="60" width="10" height="10" fill="#E8753A"/><rect x="36" y="60" width="10" height="10" fill="#E8753A"/><rect x="48" y="60" width="10" height="10" fill="#E6753C"/><rect x="60" y="60" width="10" height="10" fill="#CC7B52"/><rect x="72" y="60" width="10" height="10" fill="#CC7B52"/><rect x="84" y="60" width="10" height="10" fill="#CC7B52"/></svg>
-          <span class="judgment__number">04</span>
-          <h3>Built For Your Workflow</h3>
-          <p>Structured outputs designed to integrate directly into your decision-making process.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Weekly Briefings -->
-  <section id="briefings" class="briefings">
-    <div class="briefings__inner">
-      <p class="section-label">Weekly Briefings</p>
-      <h2 class="section-heading">Weekly Briefings</h2>
-      <div class="briefings__carousel">
-        <div class="briefings__card briefings__card--sage">
-          <span class="briefings__issue">Issue #47</span>
-          <span class="briefings__date">Mar 7, 2026</span>
-          <h3>Global Risks Watch</h3>
-          <p>Taiwan Strait escalation dynamics following latest PLA exercises. Probability of kinetic action assessed at 8% over 90 days.</p>
-          <span class="briefings__tag">Great Power Competition</span>
-        </div>
-        <div class="briefings__card briefings__card--mauve">
-          <span class="briefings__issue">Issue #46</span>
-          <span class="briefings__date">Mar 6, 2026</span>
-          <h3>Global Risks Watch</h3>
-          <p>EU Carbon Border Adjustment Phase 2 creates new trade friction. Three emerging-market exporters face existential pressure.</p>
-          <span class="briefings__tag">Energy &amp; Climate</span>
-        </div>
-        <div class="briefings__card briefings__card--orange">
-          <span class="briefings__issue">Issue #45</span>
-          <span class="briefings__date">Mar 5, 2026</span>
-          <h3>Global Risks Watch</h3>
-          <p>Sahel security vacuum widens as Africa Corps establishes forward operating bases in Niger and Burkina Faso.</p>
-          <span class="briefings__tag">Regional Flashpoints</span>
-        </div>
-        <div class="briefings__card briefings__card--sage">
-          <span class="briefings__issue">Issue #44</span>
-          <span class="briefings__date">Mar 4, 2026</span>
-          <h3>Global Risks Watch</h3>
-          <p>New evidence of advanced chip diversion through Southeast Asian intermediaries challenges US export control efficacy.</p>
-          <span class="briefings__tag">Tech &amp; AI Governance</span>
-        </div>
-        <div class="briefings__card briefings__card--mauve">
-          <span class="briefings__issue">Issue #43</span>
-          <span class="briefings__date">Mar 3, 2026</span>
-          <h3>Global Risks Watch</h3>
-          <p>Gulf state realignment under stress as proxy conflicts test the Beijing-brokered Saudi-Iran rapprochement.</p>
-          <span class="briefings__tag">Regional Flashpoints</span>
-        </div>
-      </div>
-      <div class="briefings__nav">
-        <button class="briefings__arrow briefings__arrow--prev" aria-label="Previous briefing">&larr;</button>
-        <button class="briefings__arrow briefings__arrow--next" aria-label="Next briefing">&rarr;</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Leadership -->
-  <section id="leadership" class="leadership">
-    <div class="leadership__inner">
-      <p class="section-label">Leadership</p>
-      <h2 class="section-heading">The minds behind<br>Sentinel.</h2>
-      <p class="leadership__desc">Our leadership team combines deep forecasting expertise with real-world intelligence experience.</p>
-      <div class="leadership__list">
-        <div class="leadership__card leadership__card--orange">
-          <div class="leadership__photo">
-            <img src="assets/team/analyst-1.svg" alt="Nuño Sempere">
+  <main>
+    <section id="research" class="section research">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Research Focus</p>
+            <h2 class="section-title">World-class foresight,<br>Real-world impact</h2>
           </div>
-          <div class="leadership__info">
-            <h3>Nuño Sempere</h3>
-            <span class="leadership__role">Head of Quantitative Research</span>
-            <p>Quantitative researcher and forecaster. Previously built forecasting infrastructure at QURI. Specialises in calibration, estimation, and decision-relevant modelling.</p>
+          <div class="section-note">
+            <span class="section-note__grid" aria-hidden="true"></span>
+            <p>Frontier-risk forecasting, strategic analysis, and decision-ready briefs.</p>
           </div>
         </div>
-        <div class="leadership__card leadership__card--sage">
-          <div class="leadership__photo">
-            <img src="assets/team/analyst-2.svg" alt="Rai Sur">
+
+        <div class="research__grid">
+          <article class="focus-card focus-card--orange clipped-card">
+            <h3>Geopolitics</h3>
+          </article>
+          <article class="focus-card focus-card--sage clipped-card">
+            <h3>Artificial<br>Intelligence</h3>
+          </article>
+          <article class="focus-card focus-card--maroon clipped-card">
+            <h3>Economics</h3>
+          </article>
+          <article class="focus-card focus-card--maroon clipped-card">
+            <h3>Bio Risks</h3>
+          </article>
+          <article class="focus-card focus-card--sky clipped-card">
+            <h3>Technology</h3>
+          </article>
+          <article class="focus-card focus-card--orange clipped-card">
+            <h3>Climate &amp;<br>Nature</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="track-record" class="section track">
+      <div class="shell">
+        <div class="track__panel clipped-card">
+          <div class="track__intro">
+            <p class="eyebrow">Track Record</p>
+            <h2 class="section-title">Reliable accuracy when you need it most.</h2>
+            <p class="track__copy">Our calls are scored against resolved outcomes, with a consistent edge over baseline models and expert panels.</p>
+            <a class="button button--accent" href="#signup">View scorecard</a>
+            <p class="track__meta">Brier score performance across 1,200+ resolved forecasts from 2021 to 2025.</p>
           </div>
-          <div class="leadership__info">
-            <h3>Rai Sur</h3>
-            <span class="leadership__role">Head of Geopolitical Analysis</span>
-            <p>Former intelligence analyst with deep expertise in great-power dynamics and emerging market risk. Advises institutional investors and sovereign wealth funds.</p>
+
+          <div class="track__chart">
+            <svg viewBox="0 0 620 320" role="img" aria-label="Forecast performance chart from 2021 to 2025">
+              <g stroke="rgba(122, 46, 46, 0.12)" stroke-width="1">
+                <line x1="70" y1="60" x2="590" y2="60"></line>
+                <line x1="70" y1="120" x2="590" y2="120"></line>
+                <line x1="70" y1="180" x2="590" y2="180"></line>
+                <line x1="70" y1="240" x2="590" y2="240"></line>
+              </g>
+
+              <g font-family="'DM Mono', monospace" font-size="11" fill="rgba(40, 23, 20, 0.45)">
+                <text x="58" y="64" text-anchor="end">1.0</text>
+                <text x="58" y="124" text-anchor="end">0.8</text>
+                <text x="58" y="184" text-anchor="end">0.6</text>
+                <text x="58" y="244" text-anchor="end">0.4</text>
+                <text x="110" y="286" text-anchor="middle">2021</text>
+                <text x="220" y="286" text-anchor="middle">2022</text>
+                <text x="330" y="286" text-anchor="middle">2023</text>
+                <text x="440" y="286" text-anchor="middle">2024</text>
+                <text x="550" y="286" text-anchor="middle">2025</text>
+              </g>
+
+              <g stroke="#8FA48C" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round" fill="none" opacity="0.7">
+                <polyline points="110,210 220,190 330,172 440,152 550,132"></polyline>
+              </g>
+
+              <g stroke="#E8753A" stroke-width="7" stroke-linecap="round">
+                <line x1="110" y1="225" x2="110" y2="205"></line>
+                <line x1="220" y1="210" x2="220" y2="150"></line>
+                <line x1="330" y1="190" x2="330" y2="118"></line>
+                <line x1="440" y1="168" x2="440" y2="88"></line>
+                <line x1="550" y1="145" x2="550" y2="68"></line>
+              </g>
+
+              <g fill="#E8753A">
+                <circle cx="110" cy="215" r="6"></circle>
+                <circle cx="220" cy="178" r="6"></circle>
+                <circle cx="330" cy="150" r="6"></circle>
+                <circle cx="440" cy="124" r="6"></circle>
+                <circle cx="550" cy="96" r="6"></circle>
+              </g>
+
+              <g fill="#8FA48C">
+                <circle cx="110" cy="210" r="3.5"></circle>
+                <circle cx="220" cy="190" r="3.5"></circle>
+                <circle cx="330" cy="172" r="3.5"></circle>
+                <circle cx="440" cy="152" r="3.5"></circle>
+                <circle cx="550" cy="132" r="3.5"></circle>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Foresight Team -->
-  <section id="foresight" class="foresight">
-    <div class="foresight__inner">
-      <p class="section-label">Foresight Team</p>
-      <div class="foresight__names">
-        <div class="foresight__member">
-          <span class="foresight__name">Victor Koper</span>
-          <span class="foresight__role">Eastern Europe</span>
+    <section id="judgment" class="section judgment">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Why Sentinel</p>
+            <h2 class="section-title">World-Class Judgment<br>for the Hardest-to-Price Risks</h2>
+          </div>
+          <div class="section-note">
+            <span class="section-note__grid" aria-hidden="true"></span>
+            <p>Reusable pixel-grid logic drives the hero and the high-signal cards below.</p>
+          </div>
         </div>
-        <div class="foresight__member">
-          <span class="foresight__name">Tulga Bilge</span>
-          <span class="foresight__role">Central Asia</span>
-        </div>
-        <div class="foresight__member">
-          <span class="foresight__name">Leif Sigurdsson</span>
-          <span class="foresight__role">Nordic &amp; Arctic</span>
-        </div>
-        <div class="foresight__member">
-          <span class="foresight__name">Dr. Anika Patel</span>
-          <span class="foresight__role">South Asia</span>
-        </div>
-        <div class="foresight__member">
-          <span class="foresight__name">Fatima Al-Rashid</span>
-          <span class="foresight__role">MENA Region</span>
-        </div>
-        <div class="foresight__member">
-          <span class="foresight__name">Daniel Kowalski</span>
-          <span class="foresight__role">Technology &amp; Cyber</span>
+
+        <div class="insight-grid">
+          <article class="insight-card clipped-card">
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-mode="gradient" data-palette="warm-a" data-cell-size="46" data-cell-size-mobile="30"></div>
+            <div class="insight-card__chrome">
+              <span class="insight-card__dots" aria-hidden="true"></span>
+              <span class="insight-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="insight-card__content">
+              <span class="insight-card__index">01</span>
+              <h3>Custom Assessments</h3>
+              <p>Bespoke analysis calibrated to the risks you actually need to price.</p>
+            </div>
+          </article>
+
+          <article class="insight-card clipped-card">
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-mode="gradient" data-palette="warm-b" data-cell-size="46" data-cell-size-mobile="30"></div>
+            <div class="insight-card__chrome">
+              <span class="insight-card__dots" aria-hidden="true"></span>
+              <span class="insight-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="insight-card__content">
+              <span class="insight-card__index">02</span>
+              <h3>Driven Analysis</h3>
+              <p>Probabilistic intelligence that combines deep context with quantitative discipline.</p>
+            </div>
+          </article>
+
+          <article class="insight-card clipped-card">
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-mode="gradient" data-palette="warm-c" data-cell-size="46" data-cell-size-mobile="30"></div>
+            <div class="insight-card__chrome">
+              <span class="insight-card__dots" aria-hidden="true"></span>
+              <span class="insight-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="insight-card__content">
+              <span class="insight-card__index">03</span>
+              <h3>Sensitivity Estimates</h3>
+              <p>Updateable ranges for the variables that move your scenario planning the most.</p>
+            </div>
+          </article>
+
+          <article class="insight-card clipped-card">
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-mode="gradient" data-palette="warm-d" data-cell-size="46" data-cell-size-mobile="30"></div>
+            <div class="insight-card__chrome">
+              <span class="insight-card__dots" aria-hidden="true"></span>
+              <span class="insight-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="insight-card__content">
+              <span class="insight-card__index">04</span>
+              <h3>Built for Your Workflow</h3>
+              <p>Outputs tuned for investment memos, operating reviews, and executive decision cycles.</p>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Newsletter CTA -->
-  <section id="newsletter" class="newsletter">
-    <div class="newsletter__inner">
-      <p class="section-label section-label--light">Stay Informed</p>
-      <h2 class="section-heading section-heading--light">Insights delivered<br>straight to your inbox</h2>
-      <p class="newsletter__desc">Join 12,000+ decision-makers who start their week with our geopolitical intelligence briefing.</p>
-      <form class="newsletter__form" action="#" method="post">
-        <input type="email" class="newsletter__input" placeholder="Enter your email" required aria-label="Email address">
-        <button type="submit" class="newsletter__submit">Sign Up</button>
-      </form>
-      <p class="newsletter__note">Free weekly briefing. Unsubscribe anytime.</p>
-    </div>
-  </section>
+    <section id="briefings" class="section briefings">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Weekly Briefings</p>
+            <h2 class="section-title">Weekly briefings</h2>
+          </div>
+          <div class="section-note">
+            <span class="section-note__grid" aria-hidden="true"></span>
+            <p>Short-format briefs for decision-makers tracking frontier risk in real time.</p>
+          </div>
+        </div>
 
-  <!-- Footer -->
+        <div class="briefings__rail">
+          <article class="brief-card brief-card--maroon clipped-card">
+            <span class="brief-card__meta">Issue 047</span>
+            <h3>MENA Risk Watch</h3>
+            <p>Proxy conflict spillovers remain elevated as shipping disruption probabilities rise across the Red Sea corridor.</p>
+          </article>
+
+          <article class="brief-card brief-card--sage clipped-card">
+            <span class="brief-card__meta">Issue 046</span>
+            <h3>Global Shift Brief</h3>
+            <p>Export-control circumvention networks in Southeast Asia are testing the next phase of AI supply-chain enforcement.</p>
+          </article>
+
+          <article class="brief-card brief-card--sky clipped-card">
+            <span class="brief-card__meta">Issue 045</span>
+            <h3>Climate &amp; Nature</h3>
+            <p>Food-system volatility is now a first-order geopolitical risk, not just a downstream macro indicator.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership" class="section leadership">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Leadership</p>
+            <h2 class="section-title">The minds behind<br>Sentinel</h2>
+          </div>
+          <div class="section-note">
+            <span class="section-note__grid" aria-hidden="true"></span>
+            <p>Forecasting infrastructure, geopolitical analysis, and decision-science rigor.</p>
+          </div>
+        </div>
+
+        <div class="leadership__list">
+          <article class="leader">
+            <div class="leader__photo clipped-card">
+              <img src="assets/team/analyst-1.svg" alt="Nuño Sempere">
+            </div>
+            <div class="leader__body">
+              <h3>Nuño Sempere</h3>
+              <p class="leader__role">Head of Quantitative Research</p>
+              <p class="leader__bio">Quantitative researcher and forecaster. Previously built forecasting infrastructure at QURI with a focus on calibration, estimation, and decision-relevant modelling.</p>
+            </div>
+          </article>
+
+          <article class="leader">
+            <div class="leader__photo clipped-card">
+              <img src="assets/team/analyst-2.svg" alt="Rai Sur">
+            </div>
+            <div class="leader__body">
+              <h3>Rai Sur</h3>
+              <p class="leader__role">Head of Geopolitical Analysis</p>
+              <p class="leader__bio">Former intelligence analyst with deep expertise in great-power competition, emerging-market risk, and actionable strategic briefings for investors and operators.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section foresight">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Foresight Team</p>
+            <h2 class="section-title section-title--compact">Regional specialists and applied forecasters.</h2>
+          </div>
+          <div class="section-note">
+            <span class="section-note__grid" aria-hidden="true"></span>
+            <p>Embedded expertise across Eurasia, frontier technology, and climate-security dynamics.</p>
+          </div>
+        </div>
+
+        <div class="foresight__grid">
+          <article class="foresight__member">
+            <h3>Victor Koper</h3>
+            <p class="foresight__role">Eastern Europe</p>
+            <p>Conflict trends, state capacity, and sanctions adaptation.</p>
+          </article>
+          <article class="foresight__member">
+            <h3>Tulga Bilge</h3>
+            <p class="foresight__role">Central Asia</p>
+            <p>Critical minerals, logistics corridors, and cross-border coercion.</p>
+          </article>
+          <article class="foresight__member">
+            <h3>Leif Sigurdsson</h3>
+            <p class="foresight__role">Nordic &amp; Arctic</p>
+            <p>Shipping risk, energy resilience, and polar infrastructure.</p>
+          </article>
+        </div>
+
+        <div id="signup" class="signup clipped-card">
+          <div class="signup__copy">
+            <p class="eyebrow eyebrow--light">Stay Informed</p>
+            <h2 class="signup__title">Insights delivered straight to your inbox</h2>
+            <p class="signup__text">A concise weekly briefing for operators, investors, and teams navigating high-uncertainty environments.</p>
+          </div>
+
+          <form class="signup__form" action="#" method="post">
+            <label class="signup__field">
+              <span class="sr-only">Email address</span>
+              <input type="email" name="email" placeholder="Enter your email" required>
+            </label>
+            <button class="button button--dark" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
-    <div class="footer__inner">
+    <div class="shell footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo"><span class="nav__logo-icon">S</span>SENTINEL</span>
+        <a class="footer__logo" href="#hero">
+          <span class="site-nav__brand-mark site-nav__brand-mark--dark">S</span>
+          <span class="site-nav__brand-word site-nav__brand-word--dark">Sentinel</span>
+        </a>
         <p class="footer__tagline">Geopolitical intelligence for a complex world.</p>
       </div>
+
       <div class="footer__links">
-        <a href="#">About</a>
-        <a href="#">Writing</a>
-        <a href="#">Open Source</a>
-        <a href="#">Careers</a>
+        <a href="#research">Research</a>
+        <a href="#briefings">Writing</a>
+        <a href="#leadership">Team</a>
+        <a href="#signup">Contact</a>
       </div>
-      <div class="footer__bottom">
-        <p>&copy; 2026 Sentinel Intelligence Ltd. All rights reserved.</p>
-      </div>
+
+      <p class="footer__meta">© 2026 Sentinel Intelligence Ltd. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="grid-effect.js"></script>
   <script>
-    // Hamburger menu toggle
-    (function() {
-      var btn = document.querySelector('.nav__hamburger');
-      var menu = document.querySelector('.nav__menu');
-      if (!btn || !menu) return;
-      btn.addEventListener('click', function() {
-        var open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', !open);
-        menu.classList.toggle('is-open');
-      });
-      menu.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          btn.setAttribute('aria-expanded', 'false');
-          menu.classList.remove('is-open');
-        });
-      });
-    })();
+    (function () {
+      var toggle = document.querySelector('.site-nav__toggle');
+      var links = document.querySelector('.site-nav__links');
+      if (!toggle || !links) return;
 
-    // Briefings carousel arrows
-    (function() {
-      var carousel = document.querySelector('.briefings__carousel');
-      var prev = document.querySelector('.briefings__arrow--prev');
-      var next = document.querySelector('.briefings__arrow--next');
-      if (!carousel || !prev || !next) return;
-      var card = carousel.querySelector('.briefings__card');
-      function getScrollAmount() {
-        return card ? card.offsetWidth + 24 : 340;
-      }
-      prev.addEventListener('click', function() {
-        carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+      toggle.addEventListener('click', function () {
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        links.classList.toggle('is-open');
       });
-      next.addEventListener('click', function() {
-        carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+
+      links.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          toggle.setAttribute('aria-expanded', 'false');
+          links.classList.remove('is-open');
+        });
       });
     })();
   </script>
