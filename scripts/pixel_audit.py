@@ -200,7 +200,8 @@ def parse_figma_url(url):
     if not node_id:
         raise ValueError("Figma URL must include a node-id query parameter.")
 
-    return file_key, node_id
+    api_node_id = node_id.replace("-", ":") if ":" not in node_id else node_id
+    return file_key, api_node_id, node_id
 
 
 def ensure_dir(path):
@@ -290,10 +291,11 @@ def flatten_node(node, bucket):
 
 
 def fetch_figma_reference(args, out_dir):
-    file_key, node_id = parse_figma_url(args.figma_url)
+    file_key, node_id, raw_node_id = parse_figma_url(args.figma_url)
     metadata = {
         "fileKey": file_key,
         "nodeId": node_id,
+        "rawNodeId": raw_node_id,
         "figmaUrl": args.figma_url,
         "usedToken": bool(args.figma_token),
     }
