@@ -3,3 +3,5 @@
 *.swo
 node_modules/
 .env
+.pixel-audit/
+scripts/__pycache__/
