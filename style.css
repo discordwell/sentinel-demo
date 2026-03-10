@@ -414,18 +414,11 @@ button {
 }
 
 /* Grid decoration in top-right corner */
-.judgment__card::before {
-  content: '';
+.judgment__grid-deco {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  opacity: 0.15;
-  background-image:
-    repeating-linear-gradient(0deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 9px),
-    repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 9px);
-  background-size: 9px 9px;
+  top: 16px;
+  right: 16px;
+  opacity: 0.55;
   pointer-events: none;
 }
 
