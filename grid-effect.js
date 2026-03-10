@@ -2,29 +2,28 @@
  * Sentinel Hero Grid Effect
  *
  * Generates a grid of cells over the hero section. Cells near the cursor
- * become transparent, revealing the dark background beneath.
+ * reveal in stepped concentric rings using Chebyshev distance.
  */
 (function () {
   'use strict';
 
-  const CELL_SIZE_DESKTOP = 48;
-  const CELL_SIZE_MOBILE = 36;
-  const RADIUS_CELLS = 4;
-  const TOUCH_FADE_MS = 600;
+  var CELL_SIZE_DESKTOP = 48;
+  var CELL_SIZE_MOBILE = 36;
+  var TOUCH_FADE_MS = 600;
 
-  let hero, grid;
-  let cells = [];
-  let centers = [];
-  let cols = 0, rows = 0;
-  let cellSize = CELL_SIZE_DESKTOP;
-  let radius = 0;
-  let radiusSq = 0;
-  let heroRect = null;
-  let activeSet = new Set();
-  let rafId = null;
-  let cursorX = -9999, cursorY = -9999;
-  let needsUpdate = false;
-  let touchTimeout = null;
+  // Stepped ring opacities (Chebyshev distance from cursor cell)
+  var RING_OPACITY = [0.40, 0.70, 0.98];
+
+  var hero, grid;
+  var cells = [];
+  var cols = 0, rows = 0;
+  var cellSize = CELL_SIZE_DESKTOP;
+  var heroRect = null;
+  var activeSet = new Set();
+  var rafId = null;
+  var cursorX = -9999, cursorY = -9999;
+  var needsUpdate = false;
+  var touchTimeout = null;
 
   function init() {
     hero = document.getElementById('hero');
@@ -39,29 +38,24 @@
 
   function buildGrid() {
     cellSize = window.innerWidth <= 768 ? CELL_SIZE_MOBILE : CELL_SIZE_DESKTOP;
-    radius = cellSize * RADIUS_CELLS;
-    radiusSq = radius * radius;
 
-    const w = hero.offsetWidth;
-    const h = hero.offsetHeight;
+    var w = hero.offsetWidth;
+    var h = hero.offsetHeight;
     cols = Math.ceil(w / cellSize);
     rows = Math.ceil(h / cellSize);
 
-    grid.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
-    grid.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
+    grid.style.gridTemplateColumns = 'repeat(' + cols + ', ' + cellSize + 'px)';
+    grid.style.gridTemplateRows = 'repeat(' + rows + ', ' + cellSize + 'px)';
 
-    const frag = document.createDocumentFragment();
+    var frag = document.createDocumentFragment();
     cells = [];
-    centers = [];
 
-    const halfCell = cellSize / 2;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const cell = document.createElement('div');
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var cell = document.createElement('div');
         cell.className = 'grid-cell';
         frag.appendChild(cell);
         cells.push(cell);
-        centers.push(c * cellSize + halfCell, r * cellSize + halfCell);
       }
     }
 
@@ -101,7 +95,7 @@
 
   function onTouchStart(e) {
     if (touchTimeout) clearTimeout(touchTimeout);
-    const touch = e.touches[0];
+    var touch = e.touches[0];
     if (!heroRect) cacheRect();
     cursorX = touch.clientX - heroRect.left;
     cursorY = touch.clientY - heroRect.top;
@@ -114,7 +108,7 @@
 
   function onTouchMove(e) {
     if (touchTimeout) clearTimeout(touchTimeout);
-    const touch = e.touches[0];
+    var touch = e.touches[0];
     if (!heroRect) cacheRect();
     cursorX = touch.clientX - heroRect.left;
     cursorY = touch.clientY - heroRect.top;
@@ -128,7 +122,6 @@
   function onPointerLeave() {
     cursorX = -9999;
     cursorY = -9999;
-    // Reset all active cells
     activeSet.forEach(function (idx) {
       cells[idx].style.opacity = '1';
     });
@@ -151,26 +144,27 @@
     needsUpdate = false;
     rafId = null;
 
-    const newActive = new Set();
-    const count = cells.length;
+    // Snap cursor to grid cell
+    var curCol = Math.floor(cursorX / cellSize);
+    var curRow = Math.floor(cursorY / cellSize);
 
-    for (let i = 0; i < count; i++) {
-      const cx = centers[i * 2];
-      const cy = centers[i * 2 + 1];
-      const dx = cursorX - cx;
-      const dy = cursorY - cy;
+    var newActive = new Set();
+    var maxRing = RING_OPACITY.length - 1;
 
-      // Early exit: skip sqrt if clearly outside radius
-      if (dx > radius || dx < -radius || dy > radius || dy < -radius) {
-        continue;
-      }
+    // Only iterate cells within range (ring 0..maxRing)
+    var rMin = Math.max(0, curRow - maxRing);
+    var rMax = Math.min(rows - 1, curRow + maxRing);
+    var cMin = Math.max(0, curCol - maxRing);
+    var cMax = Math.min(cols - 1, curCol + maxRing);
 
-      const distSq = dx * dx + dy * dy;
-      if (distSq < radiusSq) {
-        const dist = Math.sqrt(distSq);
-        const opacity = dist / radius;
-        newActive.add(i);
-        cells[i].style.opacity = opacity.toFixed(2);
+    for (var r = rMin; r <= rMax; r++) {
+      for (var c = cMin; c <= cMax; c++) {
+        var ring = Math.max(Math.abs(c - curCol), Math.abs(r - curRow));
+        if (ring <= maxRing) {
+          var idx = r * cols + c;
+          newActive.add(idx);
+          cells[idx].style.opacity = RING_OPACITY[ring];
+        }
       }
     }
 
@@ -185,7 +179,7 @@
   }
 
   function debounce(fn, ms) {
-    let timer;
+    var timer;
     return function () {
       clearTimeout(timer);
       timer = setTimeout(fn, ms);

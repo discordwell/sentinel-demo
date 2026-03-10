@@ -14,7 +14,7 @@
   <!-- Nav -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="#" class="nav__logo">SENTINEL</a>
+      <a href="#" class="nav__logo"><span class="nav__logo-icon">S</span>SENTINEL</a>
       <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -35,7 +35,7 @@
     <div class="hero__grid" aria-hidden="true"></div>
     <div class="hero__content">
       <p class="hero__label">Geopolitical Intelligence</p>
-      <h1 class="hero__headline">Sentinel is building<br>open-source resilience<br>for an uncertain world.</h1>
+      <h1 class="hero__headline">Sentinel is building open-source resilience for an uncertain world.</h1>
       <a href="#newsletter" class="hero__cta">Join the Latest Brief</a>
     </div>
   </section>
@@ -89,38 +89,61 @@
       <h2 class="section-heading">Reliable accuracy when<br>you need it most.</h2>
       <p class="track-record__desc">Our forecasts are scored against real-world outcomes. Sentinel analysts consistently outperform baseline prediction models.</p>
       <div class="track-record__chart">
-        <div class="chart__row">
-          <span class="chart__label">Sentinel Analysts</span>
-          <div class="chart__bar-wrap">
-            <div class="chart__bar chart__bar--sentinel" style="width: 94%">
-              <span class="chart__value">94%</span>
-            </div>
-          </div>
-        </div>
-        <div class="chart__row">
-          <span class="chart__label">Superforecasters</span>
-          <div class="chart__bar-wrap">
-            <div class="chart__bar chart__bar--super" style="width: 87%">
-              <span class="chart__value">87%</span>
-            </div>
-          </div>
-        </div>
-        <div class="chart__row">
-          <span class="chart__label">Expert Panels</span>
-          <div class="chart__bar-wrap">
-            <div class="chart__bar chart__bar--expert" style="width: 71%">
-              <span class="chart__value">71%</span>
-            </div>
-          </div>
-        </div>
-        <div class="chart__row">
-          <span class="chart__label">Baseline Model</span>
-          <div class="chart__bar-wrap">
-            <div class="chart__bar chart__bar--baseline" style="width: 58%">
-              <span class="chart__value">58%</span>
-            </div>
-          </div>
-        </div>
+        <svg class="track-record__svg" viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid lines -->
+          <line x1="60" y1="40" x2="660" y2="40" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
+          <line x1="60" y1="100" x2="660" y2="100" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
+          <line x1="60" y1="160" x2="660" y2="160" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
+          <line x1="60" y1="220" x2="660" y2="220" stroke="rgba(26,26,26,0.06)" stroke-width="1"/>
+          <!-- Y-axis labels -->
+          <text x="50" y="44" text-anchor="end" class="chart-svg__label">100%</text>
+          <text x="50" y="104" text-anchor="end" class="chart-svg__label">80%</text>
+          <text x="50" y="164" text-anchor="end" class="chart-svg__label">60%</text>
+          <text x="50" y="224" text-anchor="end" class="chart-svg__label">40%</text>
+          <!-- X-axis labels -->
+          <text x="60" y="260" text-anchor="middle" class="chart-svg__label">2021</text>
+          <text x="210" y="260" text-anchor="middle" class="chart-svg__label">2022</text>
+          <text x="360" y="260" text-anchor="middle" class="chart-svg__label">2023</text>
+          <text x="510" y="260" text-anchor="middle" class="chart-svg__label">2024</text>
+          <text x="660" y="260" text-anchor="middle" class="chart-svg__label">2025</text>
+          <!-- Sentinel accuracy band highlight -->
+          <rect x="60" y="40" width="600" height="36" fill="rgba(232,117,58,0.08)" rx="2"/>
+          <!-- Baseline line -->
+          <polyline points="60,178 210,172 360,168 510,165 660,160" stroke="rgba(26,26,26,0.2)" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+          <!-- Expert Panels line -->
+          <polyline points="60,140 210,128 360,122 510,118 660,115" stroke="#9E7B7B" stroke-width="2" fill="none"/>
+          <!-- Superforecasters line -->
+          <polyline points="60,108 210,92 360,82 510,76 660,72" stroke="#8B9E8B" stroke-width="2.5" fill="none"/>
+          <!-- Sentinel line -->
+          <polyline points="60,82 210,64 360,56 510,50 660,46" stroke="#E8753A" stroke-width="3" fill="none"/>
+          <!-- Data points — Sentinel -->
+          <circle cx="60" cy="82" r="4" fill="#E8753A"/>
+          <circle cx="210" cy="64" r="4" fill="#E8753A"/>
+          <circle cx="360" cy="56" r="4" fill="#E8753A"/>
+          <circle cx="510" cy="50" r="4" fill="#E8753A"/>
+          <circle cx="660" cy="46" r="4" fill="#E8753A"/>
+          <!-- Data points — Superforecasters -->
+          <circle cx="60" cy="108" r="3" fill="#8B9E8B"/>
+          <circle cx="210" cy="92" r="3" fill="#8B9E8B"/>
+          <circle cx="360" cy="82" r="3" fill="#8B9E8B"/>
+          <circle cx="510" cy="76" r="3" fill="#8B9E8B"/>
+          <circle cx="660" cy="72" r="3" fill="#8B9E8B"/>
+          <!-- Data points — Expert Panels -->
+          <circle cx="60" cy="140" r="3" fill="#9E7B7B"/>
+          <circle cx="210" cy="128" r="3" fill="#9E7B7B"/>
+          <circle cx="360" cy="122" r="3" fill="#9E7B7B"/>
+          <circle cx="510" cy="118" r="3" fill="#9E7B7B"/>
+          <circle cx="660" cy="115" r="3" fill="#9E7B7B"/>
+          <!-- Legend -->
+          <line x1="80" y1="292" x2="100" y2="292" stroke="#E8753A" stroke-width="3"/>
+          <text x="108" y="296" class="chart-svg__legend">Sentinel — 94%</text>
+          <line x1="240" y1="292" x2="260" y2="292" stroke="#8B9E8B" stroke-width="2.5"/>
+          <text x="268" y="296" class="chart-svg__legend">Superforecasters — 87%</text>
+          <line x1="450" y1="292" x2="470" y2="292" stroke="#9E7B7B" stroke-width="2"/>
+          <text x="478" y="296" class="chart-svg__legend">Expert Panels — 71%</text>
+          <line x1="80" y1="310" x2="100" y2="310" stroke="rgba(26,26,26,0.2)" stroke-width="2" stroke-dasharray="6,4"/>
+          <text x="108" y="314" class="chart-svg__legend">Baseline — 58%</text>
+        </svg>
       </div>
       <p class="track-record__footnote">Brier score accuracy across 1,200+ resolved forecasts (2021–2025)</p>
     </div>
@@ -133,18 +156,22 @@
       <h2 class="section-heading">World-Class Judgment<br>for the Hardest-to-<br>Price Risks</h2>
       <div class="judgment__grid">
         <div class="judgment__card judgment__card--warm">
+          <span class="judgment__number">01</span>
           <h3>Custom Assessments</h3>
           <p>Bespoke analysis tailored to your organisation's specific risk exposure and strategic priorities.</p>
         </div>
         <div class="judgment__card judgment__card--warm">
+          <span class="judgment__number">02</span>
           <h3>Driven Analysis</h3>
           <p>Evidence-based intelligence combining quantitative models with deep regional expertise.</p>
         </div>
         <div class="judgment__card judgment__card--warm">
+          <span class="judgment__number">03</span>
           <h3>Sensitivity Estimates</h3>
           <p>Calibrated probability ranges for key variables, updated as new information emerges.</p>
         </div>
         <div class="judgment__card judgment__card--warm">
+          <span class="judgment__number">04</span>
           <h3>Built For Your Workflow</h3>
           <p>Structured outputs designed to integrate directly into your decision-making process.</p>
         </div>
@@ -159,35 +186,44 @@
       <h2 class="section-heading">Weekly Briefings</h2>
       <div class="briefings__carousel">
         <div class="briefings__card briefings__card--sage">
+          <span class="briefings__issue">Issue #47</span>
           <span class="briefings__date">Mar 7, 2026</span>
           <h3>Global Risks Watch</h3>
           <p>Taiwan Strait escalation dynamics following latest PLA exercises. Probability of kinetic action assessed at 8% over 90 days.</p>
           <span class="briefings__tag">Great Power Competition</span>
         </div>
         <div class="briefings__card briefings__card--mauve">
+          <span class="briefings__issue">Issue #46</span>
           <span class="briefings__date">Mar 6, 2026</span>
           <h3>Global Risks Watch</h3>
           <p>EU Carbon Border Adjustment Phase 2 creates new trade friction. Three emerging-market exporters face existential pressure.</p>
           <span class="briefings__tag">Energy &amp; Climate</span>
         </div>
         <div class="briefings__card briefings__card--orange">
+          <span class="briefings__issue">Issue #45</span>
           <span class="briefings__date">Mar 5, 2026</span>
           <h3>Global Risks Watch</h3>
           <p>Sahel security vacuum widens as Africa Corps establishes forward operating bases in Niger and Burkina Faso.</p>
           <span class="briefings__tag">Regional Flashpoints</span>
         </div>
         <div class="briefings__card briefings__card--sage">
+          <span class="briefings__issue">Issue #44</span>
           <span class="briefings__date">Mar 4, 2026</span>
           <h3>Global Risks Watch</h3>
           <p>New evidence of advanced chip diversion through Southeast Asian intermediaries challenges US export control efficacy.</p>
           <span class="briefings__tag">Tech &amp; AI Governance</span>
         </div>
         <div class="briefings__card briefings__card--mauve">
+          <span class="briefings__issue">Issue #43</span>
           <span class="briefings__date">Mar 3, 2026</span>
           <h3>Global Risks Watch</h3>
           <p>Gulf state realignment under stress as proxy conflicts test the Beijing-brokered Saudi-Iran rapprochement.</p>
           <span class="briefings__tag">Regional Flashpoints</span>
         </div>
+      </div>
+      <div class="briefings__nav">
+        <button class="briefings__arrow briefings__arrow--prev" aria-label="Previous briefing">&larr;</button>
+        <button class="briefings__arrow briefings__arrow--next" aria-label="Next briefing">&rarr;</button>
       </div>
     </div>
   </section>
@@ -197,8 +233,9 @@
     <div class="leadership__inner">
       <p class="section-label">Leadership</p>
       <h2 class="section-heading">The minds behind<br>Sentinel.</h2>
+      <p class="leadership__desc">Our leadership team combines deep forecasting expertise with real-world intelligence experience.</p>
       <div class="leadership__list">
-        <div class="leadership__card">
+        <div class="leadership__card leadership__card--orange">
           <div class="leadership__photo">
             <img src="assets/team/analyst-1.svg" alt="Nuño Sempere">
           </div>
@@ -208,7 +245,7 @@
             <p>Quantitative researcher and forecaster. Previously built forecasting infrastructure at QURI. Specialises in calibration, estimation, and decision-relevant modelling.</p>
           </div>
         </div>
-        <div class="leadership__card">
+        <div class="leadership__card leadership__card--sage">
           <div class="leadership__photo">
             <img src="assets/team/analyst-2.svg" alt="Rai Sur">
           </div>
@@ -227,12 +264,30 @@
     <div class="foresight__inner">
       <p class="section-label">Foresight Team</p>
       <div class="foresight__names">
-        <span>Victor Koper</span>
-        <span>Tulga Bilge</span>
-        <span>Leif Sigurdsson</span>
-        <span>Dr. Anika Patel</span>
-        <span>Fatima Al-Rashid</span>
-        <span>Daniel Kowalski</span>
+        <div class="foresight__member">
+          <span class="foresight__name">Victor Koper</span>
+          <span class="foresight__role">Eastern Europe</span>
+        </div>
+        <div class="foresight__member">
+          <span class="foresight__name">Tulga Bilge</span>
+          <span class="foresight__role">Central Asia</span>
+        </div>
+        <div class="foresight__member">
+          <span class="foresight__name">Leif Sigurdsson</span>
+          <span class="foresight__role">Nordic &amp; Arctic</span>
+        </div>
+        <div class="foresight__member">
+          <span class="foresight__name">Dr. Anika Patel</span>
+          <span class="foresight__role">South Asia</span>
+        </div>
+        <div class="foresight__member">
+          <span class="foresight__name">Fatima Al-Rashid</span>
+          <span class="foresight__role">MENA Region</span>
+        </div>
+        <div class="foresight__member">
+          <span class="foresight__name">Daniel Kowalski</span>
+          <span class="foresight__role">Technology &amp; Cyber</span>
+        </div>
       </div>
     </div>
   </section>
@@ -255,28 +310,14 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <span class="footer__logo">SENTINEL</span>
+        <span class="footer__logo"><span class="nav__logo-icon">S</span>SENTINEL</span>
         <p class="footer__tagline">Geopolitical intelligence for a complex world.</p>
       </div>
       <div class="footer__links">
-        <div class="footer__col">
-          <h4>Research</h4>
-          <a href="#">Focus Areas</a>
-          <a href="#">Methodology</a>
-          <a href="#">Track Record</a>
-        </div>
-        <div class="footer__col">
-          <h4>Company</h4>
-          <a href="#">About</a>
-          <a href="#">Team</a>
-          <a href="#">Careers</a>
-        </div>
-        <div class="footer__col">
-          <h4>Legal</h4>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Contact</a>
-        </div>
+        <a href="#">About</a>
+        <a href="#">Writing</a>
+        <a href="#">Open Source</a>
+        <a href="#">Careers</a>
       </div>
       <div class="footer__bottom">
         <p>&copy; 2026 Sentinel Intelligence Ltd. All rights reserved.</p>
@@ -296,12 +337,29 @@
         btn.setAttribute('aria-expanded', !open);
         menu.classList.toggle('is-open');
       });
-      // Close menu on link click
       menu.querySelectorAll('a').forEach(function(a) {
         a.addEventListener('click', function() {
           btn.setAttribute('aria-expanded', 'false');
           menu.classList.remove('is-open');
         });
+      });
+    })();
+
+    // Briefings carousel arrows
+    (function() {
+      var carousel = document.querySelector('.briefings__carousel');
+      var prev = document.querySelector('.briefings__arrow--prev');
+      var next = document.querySelector('.briefings__arrow--next');
+      if (!carousel || !prev || !next) return;
+      var card = carousel.querySelector('.briefings__card');
+      function getScrollAmount() {
+        return card ? card.offsetWidth + 24 : 340;
+      }
+      prev.addEventListener('click', function() {
+        carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function() {
+        carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
       });
     })();
   </script>
