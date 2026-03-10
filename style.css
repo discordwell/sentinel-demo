@@ -293,7 +293,7 @@ button {
 }
 
 .pixel-cell {
-  transition: filter 120ms ease-out;
+  transition: background-color 120ms ease-out;
 }
 
 .hero__content {
@@ -470,7 +470,7 @@ button {
   z-index: 0;
   display: grid;
   gap: 2px;
-  background: rgba(245, 240, 232, 0.14);
+  background: rgba(245, 240, 232, 0.08);
   pointer-events: none;
 }
 
@@ -479,7 +479,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(111, 28, 32, 0.16) 0%, rgba(111, 28, 32, 0.04) 46%, rgba(245, 240, 232, 0.04) 100%);
+  background: linear-gradient(90deg, rgba(111, 28, 32, 0.08) 0%, rgba(111, 28, 32, 0.02) 46%, rgba(245, 240, 232, 0.02) 100%);
 }
 
 .insight-card__chrome,
