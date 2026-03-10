@@ -54,6 +54,8 @@
 
   var surfaces = [];
   var cleanupFns = [];
+  var imageCache = {};
+  var sampledPatternCache = {};
 
   function init() {
     var nodes = document.querySelectorAll('.pixel-surface');
@@ -82,10 +84,12 @@
       pointerInside: false,
       cursorX: 0,
       cursorY: 0,
-      touchTimeout: null
+      touchTimeout: null,
+      image: null
     };
 
     buildSurface(state);
+    ensureSurfaceImage(state);
     return state;
   }
 
@@ -155,7 +159,7 @@
     state.rows = rows;
     state.cellSize = cellSize;
     state.cells = [];
-    state.baseRgb = [];
+    state.baseRgb = getBaseColors(state, cols, rows);
     state.baseCss = [];
 
     node.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(0, 1fr))';
@@ -164,7 +168,7 @@
 
     for (var row = 0; row < rows; row += 1) {
       for (var col = 0; col < cols; col += 1) {
-        var rgb = getBaseColor(node, col, row, cols, rows);
+        var rgb = state.baseRgb[(row * cols) + col];
         var css = rgbToCss(rgb);
         var cell = document.createElement('div');
 
@@ -181,26 +185,122 @@
     node.appendChild(fragment);
   }
 
+  function ensureSurfaceImage(state) {
+    var src = state.node.dataset.imageSrc;
+    if (!src) return;
+
+    if (imageCache[src]) {
+      if (imageCache[src].status === 'loaded') {
+        state.image = imageCache[src].image;
+        return;
+      }
+
+      imageCache[src].listeners.push(function (image) {
+        state.image = image;
+        buildSurface(state);
+      });
+      return;
+    }
+
+    imageCache[src] = {
+      status: 'loading',
+      image: null,
+      listeners: [function (image) {
+        state.image = image;
+        buildSurface(state);
+      }]
+    };
+
+    var image = new Image();
+    image.onload = function () {
+      var entry = imageCache[src];
+      entry.status = 'loaded';
+      entry.image = image;
+      entry.listeners.forEach(function (listener) {
+        listener(image);
+      });
+      entry.listeners = [];
+    };
+    image.onerror = function () {
+      imageCache[src].status = 'error';
+      imageCache[src].listeners = [];
+    };
+    image.src = src;
+  }
+
   function getCellSize(node) {
     var desktop = parseInt(node.dataset.cellSize || DEFAULT_CELL_SIZE, 10);
     var mobile = parseInt(node.dataset.cellSizeMobile || DEFAULT_MOBILE_CELL_SIZE, 10);
     return window.innerWidth <= 768 ? mobile : desktop;
   }
 
-  function getBaseColor(node, col, row, cols, rows) {
-    if (node.dataset.pattern && SAMPLE_PATTERNS[node.dataset.pattern]) {
-      return getPatternColor(SAMPLE_PATTERNS[node.dataset.pattern], col, row, cols, rows);
+  function getBaseColors(state, cols, rows) {
+    var node = state.node;
+    var src = node.dataset.imageSrc;
+
+    if (src && imageCache[src] && imageCache[src].status === 'loaded') {
+      return getImageColors(src, imageCache[src].image, cols, rows);
     }
 
-    return hexToRgb(node.dataset.baseColor || '#E8753A');
+    if (node.dataset.pattern && SAMPLE_PATTERNS[node.dataset.pattern]) {
+      return getPatternColors(SAMPLE_PATTERNS[node.dataset.pattern], cols, rows);
+    }
+
+    return fillColors(hexToRgb(node.dataset.baseColor || '#E8753A'), cols * rows);
   }
 
-  function getPatternColor(pattern, col, row, cols, rows) {
+  function getPatternColors(pattern, cols, rows) {
+    var colors = [];
     var patternRows = pattern.length;
     var patternCols = pattern[0].length;
-    var patternCol = cols <= 1 ? 0 : Math.round((patternCols - 1) * (col / (cols - 1)));
-    var patternRow = rows <= 1 ? 0 : Math.round((patternRows - 1) * (row / (rows - 1)));
-    return hexToRgb(pattern[patternRow][patternCol]);
+
+    for (var row = 0; row < rows; row += 1) {
+      for (var col = 0; col < cols; col += 1) {
+        var patternCol = cols <= 1 ? 0 : Math.round((patternCols - 1) * (col / (cols - 1)));
+        var patternRow = rows <= 1 ? 0 : Math.round((patternRows - 1) * (row / (rows - 1)));
+        colors.push(hexToRgb(pattern[patternRow][patternCol]));
+      }
+    }
+
+    return colors;
+  }
+
+  function getImageColors(src, image, cols, rows) {
+    var cacheKey = src + ':' + cols + 'x' + rows;
+    if (sampledPatternCache[cacheKey]) {
+      return sampledPatternCache[cacheKey];
+    }
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var colors = [];
+
+    canvas.width = cols;
+    canvas.height = rows;
+    context.drawImage(image, 0, 0, cols, rows);
+
+    var data = context.getImageData(0, 0, cols, rows).data;
+    for (var row = 0; row < rows; row += 1) {
+      for (var col = 0; col < cols; col += 1) {
+        var index = ((row * cols) + col) * 4;
+        colors.push({
+          r: data[index],
+          g: data[index + 1],
+          b: data[index + 2]
+        });
+      }
+    }
+
+    sampledPatternCache[cacheKey] = colors;
+    return colors;
+  }
+
+  function fillColors(rgb, count) {
+    var colors = [];
+    for (var index = 0; index < count; index += 1) {
+      colors.push(rgb);
+    }
+    return colors;
   }
 
   function updatePointerState(state, clientX, clientY) {
