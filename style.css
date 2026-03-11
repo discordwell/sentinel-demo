@@ -264,6 +264,23 @@ button {
   height: 100%;
 }
 
+@media (min-width: 1025px) {
+  .hero__brand,
+  .hero__menu-button {
+    top: var(--hero-grid-cell-height, 90px);
+    width: var(--hero-grid-cell-width, 90px);
+    height: var(--hero-grid-cell-height, 90px);
+  }
+
+  .hero__brand {
+    left: var(--hero-grid-cell-width, 90px);
+  }
+
+  .hero__menu-button {
+    right: var(--hero-grid-cell-width, 90px);
+  }
+}
+
 .hero__menu {
   position: absolute;
   top: 190px;

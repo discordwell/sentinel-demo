@@ -183,6 +183,8 @@
     }
 
     node.appendChild(fragment);
+
+    syncSurfaceUi(state, width, height);
   }
 
   function ensureSurfaceImage(state) {
@@ -301,6 +303,16 @@
       colors.push(rgb);
     }
     return colors;
+  }
+
+  function syncSurfaceUi(state, width, height) {
+    if (!state.node.classList.contains('hero__pixels')) return;
+
+    var hero = state.node.closest('.hero');
+    if (!hero || !state.cols || !state.rows) return;
+
+    hero.style.setProperty('--hero-grid-cell-width', (width / state.cols) + 'px');
+    hero.style.setProperty('--hero-grid-cell-height', (height / state.rows) + 'px');
   }
 
   function updatePointerState(state, clientX, clientY) {
