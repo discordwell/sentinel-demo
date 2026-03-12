@@ -363,10 +363,12 @@ button {
   }
 
   .hero__title-block {
+    background: transparent;
     min-height: calc(var(--hero-grid-cell-height, 90px) * 3);
   }
 
   .hero__cta-block {
+    background: transparent;
     height: var(--hero-grid-cell-height, 90px);
   }
 }

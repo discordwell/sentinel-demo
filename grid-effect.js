@@ -6,6 +6,7 @@
   var TOUCH_FADE_MS = 600;
   var RING_BLEND = [0.74, 0.42, 0.18];
   var DEFAULT_HIGHLIGHT = '#f8e8dc';
+  var HERO_PANEL_COLOR = '#eb8a55';
   var SAMPLE_PATTERNS = {
     hero: [
       ['#e9763b', '#e97a40', '#e9773c', '#e9763b', '#e9763b', '#e9763b', '#e9763b', '#e9763b', '#e9763b', '#e9783e', '#e9783d', '#e9783e', '#e9783e', '#e9783e', '#e97a41', '#e9763b'],
@@ -240,6 +241,10 @@
     var node = state.node;
     var src = node.dataset.imageSrc;
 
+    if (node.dataset.pattern === 'hero-wireframe' && window.innerWidth >= 1025) {
+      return getHeroWireframeColors(node, cols, rows);
+    }
+
     if (src && imageCache[src] && imageCache[src].status === 'loaded') {
       return getImageColors(src, imageCache[src].image, cols, rows);
     }
@@ -249,6 +254,28 @@
     }
 
     return fillColors(hexToRgb(node.dataset.baseColor || '#E8753A'), cols * rows);
+  }
+
+  function getHeroWireframeColors(node, cols, rows) {
+    var base = hexToRgb(node.dataset.baseColor || '#E8753A');
+    var panel = hexToRgb(HERO_PANEL_COLOR);
+    var colors = fillColors(base, cols * rows);
+
+    fillRect(colors, cols, rows, 1, 5, 12, 3, panel);
+    fillRect(colors, cols, rows, 1, 8, 5, 1, panel);
+
+    return colors;
+  }
+
+  function fillRect(colors, cols, rows, colStart, rowStart, colSpan, rowSpan, rgb) {
+    var colEnd = Math.min(cols, colStart + colSpan);
+    var rowEnd = Math.min(rows, rowStart + rowSpan);
+
+    for (var row = Math.max(0, rowStart); row < rowEnd; row += 1) {
+      for (var col = Math.max(0, colStart); col < colEnd; col += 1) {
+        colors[(row * cols) + col] = rgb;
+      }
+    }
   }
 
   function getPatternColors(pattern, cols, rows) {
