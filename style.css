@@ -355,6 +355,22 @@ button {
   letter-spacing: 0.23px;
 }
 
+@media (min-width: 1025px) {
+  .hero__panel {
+    left: var(--hero-grid-cell-width, 90px);
+    top: calc(var(--hero-grid-cell-height, 90px) * 5);
+    width: calc(var(--hero-grid-cell-width, 90px) * 12);
+  }
+
+  .hero__title-block {
+    min-height: calc(var(--hero-grid-cell-height, 90px) * 3);
+  }
+
+  .hero__cta-block {
+    height: var(--hero-grid-cell-height, 90px);
+  }
+}
+
 .press {
   padding: 0 0 39px;
 }
