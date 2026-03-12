@@ -1244,17 +1244,15 @@ button {
     margin-top: 72px;
   }
 
-  .briefings__viewport {
-    overflow-x: auto;
-  }
-
   .briefings__rail {
-    margin-left: 20px;
-    padding-right: 20px;
+    grid-template-columns: 1fr;
+    width: calc(100% - (var(--gutter) * 2));
+    margin: 0 auto;
+    padding-right: 0;
   }
 
   .brief-card {
-    width: min(88vw, 420px);
+    width: 100%;
   }
 
   .leader__photo {
@@ -1305,7 +1303,8 @@ button {
 
   .briefings__rail {
     display: grid;
-    width: min(calc(100% - (var(--gutter) * 2)), 760px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(calc(100% - (var(--gutter) * 2)), var(--shell));
     margin: 0 auto;
     padding-right: 0;
     gap: 24px;
@@ -1313,5 +1312,18 @@ button {
 
   .brief-card {
     width: 100%;
+  }
+}
+
+@media (max-width: 1180px) {
+  .briefings__rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .briefings__rail {
+    grid-template-columns: 1fr;
+    width: calc(100% - (var(--gutter) * 2));
   }
 }
