@@ -67,6 +67,12 @@
     if (!surfaces.length) return;
 
     bindEvents();
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        surfaces.forEach(buildSurface);
+      });
+    }
   }
 
   function createSurface(node) {
@@ -90,6 +96,7 @@
     };
 
     buildSurface(state);
+    observeSurface(state);
     ensureSurfaceImage(state);
     return state;
   }
@@ -229,6 +236,31 @@
       imageCache[src].listeners = [];
     };
     image.src = src;
+  }
+
+  function observeSurface(state) {
+    if (typeof ResizeObserver !== 'function') return;
+
+    var rebuild = debounce(function () {
+      buildSurface(state);
+    }, 60);
+    var observer = new ResizeObserver(function () {
+      rebuild();
+    });
+    var hero = state.node.classList.contains('hero__pixels') ? state.node.closest('.hero') : null;
+
+    observer.observe(state.node);
+
+    if (hero) {
+      ['.hero__title-block', '.hero__cta-block'].forEach(function (selector) {
+        var element = hero.querySelector(selector);
+        if (element) observer.observe(element);
+      });
+    }
+
+    cleanupFns.push(function () {
+      observer.disconnect();
+    });
   }
 
   function getCellSize(node) {
