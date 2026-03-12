@@ -8,15 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Martian+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260312d">
-  <link rel="stylesheet" href="assets/figma/typography.css?v=20260312d">
+  <link rel="stylesheet" href="style.css?v=20260312e">
+  <link rel="stylesheet" href="assets/figma/typography.css?v=20260312e">
 </head>
 <body>
   <header id="hero" class="hero">
     <div
       class="hero__pixels pixel-surface"
       aria-hidden="true"
-      data-pattern="hero"
+      data-base-color="#e8753a"
       data-highlight="#fffdf2"
       data-cell-size="90"
       data-cell-size-mobile="45"
@@ -42,8 +42,12 @@
 
     <div class="hero__content">
       <div class="hero__panel">
-        <h1 class="hero__title">Sentinel is building open-source resilience for an uncertain world.</h1>
-        <a class="button button--light" href="#briefings">Read the latest brief</a>
+        <div class="hero__title-block">
+          <h1 class="hero__title">Sentinel is building open-source resilience for an uncertain world.</h1>
+        </div>
+        <div class="hero__cta-block">
+          <a class="button button--light" href="#briefings">READ THE LATEST BRIEF</a>
+        </div>
       </div>
     </div>
   </header>
@@ -469,7 +473,7 @@
     </div>
   </footer>
 
-  <script src="grid-effect.js?v=20260312d"></script>
+  <script src="grid-effect.js?v=20260312e"></script>
   <script>
     (function () {
       var button = document.querySelector('.hero__menu-button');
