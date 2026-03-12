@@ -237,7 +237,7 @@ button {
 }
 
 .hero__pixels .pixel-cell {
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 242, 0.1);
 }
 
 .hero__brand,
