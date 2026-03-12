@@ -824,7 +824,7 @@ button {
   background: var(--divider);
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1360px) and (max-width: 1520px) {
   .press {
     padding: 0;
   }
