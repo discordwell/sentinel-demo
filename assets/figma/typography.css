@@ -5,9 +5,9 @@
 /* Hero Title (1:319: Sentinel is building open-source resilience for an uncertain world.) */
 .hero__title {
   font-family: "Martian Mono", monospace;
-  font-size: 64px;
+  font-size: var(--hero-title-font-size, 64px);
   font-weight: 700;
-  line-height: 80px;
+  line-height: var(--hero-title-line-height, 80px);
   letter-spacing: 0px;
 }
 

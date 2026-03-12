@@ -81,6 +81,7 @@
       cells: [],
       baseRgb: [],
       baseCss: [],
+      heroLayout: null,
       active: new Set(),
       cols: 0,
       rows: 0,
@@ -167,8 +168,10 @@
     state.rows = rows;
     state.cellSize = cellSize;
     state.cells = [];
-    state.baseRgb = getBaseColors(state, cols, rows);
     state.baseCss = [];
+
+    syncSurfaceUi(state, width, height);
+    state.baseRgb = getBaseColors(state, cols, rows);
 
     node.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(0, 1fr))';
     node.style.gridTemplateRows = 'repeat(' + rows + ', minmax(0, 1fr))';
@@ -185,14 +188,11 @@
         fragment.appendChild(cell);
 
         state.cells.push(cell);
-        state.baseRgb.push(rgb);
         state.baseCss.push(css);
       }
     }
 
     node.appendChild(fragment);
-
-    syncSurfaceUi(state, width, height);
   }
 
   function ensureSurfaceImage(state) {
@@ -291,19 +291,41 @@
   function getHeroWireframeColors(state, cols, rows) {
     var node = state.node;
     var hero = node.closest('.hero');
-    var rect = node.getBoundingClientRect();
     var base = hexToRgb(node.dataset.baseColor || '#E8753A');
     var panel = hexToRgb(HERO_PANEL_COLOR);
     var colors = fillColors(base, cols * rows);
 
-    if (!hero || !rect.width || !rect.height) {
+    if (!hero) {
       return colors;
     }
 
     hero.classList.add('hero--wireframe-ready');
+
+    if (state.heroLayout) {
+      fillRect(colors, cols, rows, state.heroLayout.titleColStart, state.heroLayout.titleRowStart, state.heroLayout.titleColSpan, state.heroLayout.titleRowSpan, panel);
+      fillRect(colors, cols, rows, state.heroLayout.ctaColStart, state.heroLayout.ctaRowStart, state.heroLayout.ctaColSpan, state.heroLayout.ctaRowSpan, panel);
+      return colors;
+    }
+
+    var rect = node.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
+      return colors;
+    }
+
     fillElementRect(colors, cols, rows, rect, hero.querySelector('.hero__title-block'), panel);
     fillElementRect(colors, cols, rows, rect, hero.querySelector('.hero__cta-block'), panel);
     return colors;
+  }
+
+  function fillRect(colors, cols, rows, colStart, rowStart, colSpan, rowSpan, rgb) {
+    var colEnd = Math.min(cols, colStart + colSpan);
+    var rowEnd = Math.min(rows, rowStart + rowSpan);
+
+    for (var row = Math.max(0, rowStart); row < rowEnd; row += 1) {
+      for (var col = Math.max(0, colStart); col < colEnd; col += 1) {
+        colors[(row * cols) + col] = rgb;
+      }
+    }
   }
 
   function fillElementRect(colors, cols, rows, surfaceRect, element, rgb) {
@@ -383,9 +405,73 @@
 
     var hero = state.node.closest('.hero');
     if (!hero || !state.cols || !state.rows) return;
+    var cellWidth = width / state.cols;
+    var cellHeight = height / state.rows;
 
-    hero.style.setProperty('--hero-grid-cell-width', (width / state.cols) + 'px');
-    hero.style.setProperty('--hero-grid-cell-height', (height / state.rows) + 'px');
+    hero.style.setProperty('--hero-grid-cell-width', cellWidth + 'px');
+    hero.style.setProperty('--hero-grid-cell-height', cellHeight + 'px');
+
+    if (window.innerWidth < 1025) {
+      state.heroLayout = null;
+      hero.style.removeProperty('--hero-panel-left');
+      hero.style.removeProperty('--hero-panel-top');
+      hero.style.removeProperty('--hero-panel-width');
+      hero.style.removeProperty('--hero-title-height');
+      hero.style.removeProperty('--hero-cta-width');
+      hero.style.removeProperty('--hero-cta-height');
+      hero.style.removeProperty('--hero-title-font-size');
+      hero.style.removeProperty('--hero-title-line-height');
+      return;
+    }
+
+    var title = hero.querySelector('.hero__title');
+    var titleBlock = hero.querySelector('.hero__title-block');
+    var ctaBlock = hero.querySelector('.hero__cta-block');
+    var button = hero.querySelector('.hero__panel .button');
+    var titleColStart = 1;
+    var titleColSpan = Math.max(8, Math.min(12, state.cols - 2));
+    var maxTitleRows = Math.max(3, state.rows - 3);
+    var titleFontSize = Math.max(56, Math.min(64, Math.round(cellWidth * 0.7111)));
+    var titleLineHeight = Math.max(68, Math.min(80, Math.round(cellHeight * 0.8889)));
+    var titleRows = 3;
+    var ctaColSpan = 5;
+
+    hero.style.setProperty('--hero-title-font-size', titleFontSize + 'px');
+    hero.style.setProperty('--hero-title-line-height', titleLineHeight + 'px');
+
+    if (title && titleBlock) {
+      var titleBlockStyle = window.getComputedStyle(titleBlock);
+      var titlePadding = parseFloat(titleBlockStyle.paddingTop) + parseFloat(titleBlockStyle.paddingBottom);
+      var titleNeededHeight = title.scrollHeight + titlePadding;
+      titleRows = Math.max(3, Math.min(maxTitleRows, Math.ceil(titleNeededHeight / cellHeight)));
+    }
+
+    var titleRowStart = Math.max(2, state.rows - titleRows - 2);
+
+    hero.style.setProperty('--hero-panel-left', (titleColStart * cellWidth) + 'px');
+    hero.style.setProperty('--hero-panel-top', (titleRowStart * cellHeight) + 'px');
+    hero.style.setProperty('--hero-panel-width', (titleColSpan * cellWidth) + 'px');
+    hero.style.setProperty('--hero-title-height', (titleRows * cellHeight) + 'px');
+
+    if (button && ctaBlock) {
+      var ctaBlockStyle = window.getComputedStyle(ctaBlock);
+      var ctaPadding = parseFloat(ctaBlockStyle.paddingLeft) + parseFloat(ctaBlockStyle.paddingRight);
+      var ctaNeededWidth = button.getBoundingClientRect().width + ctaPadding;
+      ctaColSpan = Math.max(5, Math.min(titleColSpan, Math.ceil(ctaNeededWidth / cellWidth)));
+    }
+
+    hero.style.setProperty('--hero-cta-width', (ctaColSpan * cellWidth) + 'px');
+    hero.style.setProperty('--hero-cta-height', cellHeight + 'px');
+    state.heroLayout = {
+      titleColStart: titleColStart,
+      titleRowStart: titleRowStart,
+      titleColSpan: titleColSpan,
+      titleRowSpan: titleRows,
+      ctaColStart: titleColStart,
+      ctaRowStart: titleRowStart + titleRows,
+      ctaColSpan: ctaColSpan,
+      ctaRowSpan: 1
+    };
   }
 
   function updatePointerState(state, clientX, clientY) {

@@ -364,18 +364,18 @@ button {
 
 @media (min-width: 1025px) {
   .hero__panel {
-    left: var(--hero-grid-cell-width, 90px);
-    top: calc(var(--hero-grid-cell-height, 90px) * 5);
-    width: calc(var(--hero-grid-cell-width, 90px) * 12);
+    left: var(--hero-panel-left, var(--hero-grid-cell-width, 90px));
+    top: var(--hero-panel-top, calc(var(--hero-grid-cell-height, 90px) * 5));
+    width: var(--hero-panel-width, calc(var(--hero-grid-cell-width, 90px) * 12));
   }
 
   .hero__title-block {
-    min-height: calc(var(--hero-grid-cell-height, 90px) * 3);
+    min-height: var(--hero-title-height, calc(var(--hero-grid-cell-height, 90px) * 3));
   }
 
   .hero__cta-block {
-    min-width: calc(var(--hero-grid-cell-width, 90px) * 5);
-    min-height: var(--hero-grid-cell-height, 90px);
+    width: var(--hero-cta-width, calc(var(--hero-grid-cell-width, 90px) * 5));
+    min-height: var(--hero-cta-height, var(--hero-grid-cell-height, 90px));
   }
 }
 
