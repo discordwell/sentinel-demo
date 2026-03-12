@@ -329,13 +329,19 @@ button {
   background: rgba(255, 253, 242, 0.14);
 }
 
+.hero.hero--wireframe-ready .hero__title-block,
+.hero.hero--wireframe-ready .hero__cta-block {
+  background: transparent;
+}
+
 .hero__title-block {
   width: 100%;
   padding: 18px 16px 12px 24px;
 }
 
 .hero__cta-block {
-  width: min(calc(var(--hero-grid-cell-width, 90px) * 5), 100%);
+  width: fit-content;
+  max-width: 100%;
   padding: 19px 25px;
 }
 
@@ -353,6 +359,7 @@ button {
   font-size: 23px;
   line-height: 1.2;
   letter-spacing: 0.23px;
+  white-space: nowrap;
 }
 
 @media (min-width: 1025px) {
@@ -363,13 +370,12 @@ button {
   }
 
   .hero__title-block {
-    background: transparent;
     min-height: calc(var(--hero-grid-cell-height, 90px) * 3);
   }
 
   .hero__cta-block {
-    background: transparent;
-    height: var(--hero-grid-cell-height, 90px);
+    min-width: calc(var(--hero-grid-cell-width, 90px) * 5);
+    min-height: var(--hero-grid-cell-height, 90px);
   }
 }
 
@@ -1137,7 +1143,7 @@ button {
   }
 
   .hero__cta-block {
-    width: min(calc(var(--hero-grid-cell-width, 72px) * 4), 100%);
+    min-width: calc(var(--hero-grid-cell-width, 72px) * 4);
     padding: 16px 20px;
   }
 
@@ -1216,7 +1222,7 @@ button {
   }
 
   .hero__cta-block {
-    width: min(100%, 312px);
+    min-width: min(100%, 312px);
     padding: 12px 16px;
   }
 

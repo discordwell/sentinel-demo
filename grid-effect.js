@@ -241,8 +241,8 @@
     var node = state.node;
     var src = node.dataset.imageSrc;
 
-    if (node.dataset.pattern === 'hero-wireframe' && window.innerWidth >= 1025) {
-      return getHeroWireframeColors(node, cols, rows);
+    if (node.dataset.pattern === 'hero-wireframe') {
+      return getHeroWireframeColors(state, cols, rows);
     }
 
     if (src && imageCache[src] && imageCache[src].status === 'loaded') {
@@ -256,23 +256,37 @@
     return fillColors(hexToRgb(node.dataset.baseColor || '#E8753A'), cols * rows);
   }
 
-  function getHeroWireframeColors(node, cols, rows) {
+  function getHeroWireframeColors(state, cols, rows) {
+    var node = state.node;
+    var hero = node.closest('.hero');
+    var rect = node.getBoundingClientRect();
     var base = hexToRgb(node.dataset.baseColor || '#E8753A');
     var panel = hexToRgb(HERO_PANEL_COLOR);
     var colors = fillColors(base, cols * rows);
 
-    fillRect(colors, cols, rows, 1, 5, 12, 3, panel);
-    fillRect(colors, cols, rows, 1, 8, 5, 1, panel);
+    if (!hero || !rect.width || !rect.height) {
+      return colors;
+    }
 
+    hero.classList.add('hero--wireframe-ready');
+    fillElementRect(colors, cols, rows, rect, hero.querySelector('.hero__title-block'), panel);
+    fillElementRect(colors, cols, rows, rect, hero.querySelector('.hero__cta-block'), panel);
     return colors;
   }
 
-  function fillRect(colors, cols, rows, colStart, rowStart, colSpan, rowSpan, rgb) {
-    var colEnd = Math.min(cols, colStart + colSpan);
-    var rowEnd = Math.min(rows, rowStart + rowSpan);
+  function fillElementRect(colors, cols, rows, surfaceRect, element, rgb) {
+    if (!element) return;
 
-    for (var row = Math.max(0, rowStart); row < rowEnd; row += 1) {
-      for (var col = Math.max(0, colStart); col < colEnd; col += 1) {
+    var rect = element.getBoundingClientRect();
+    var cellWidth = surfaceRect.width / cols;
+    var cellHeight = surfaceRect.height / rows;
+    var colStart = Math.floor((rect.left - surfaceRect.left) / cellWidth);
+    var colEnd = Math.ceil((rect.right - surfaceRect.left) / cellWidth);
+    var rowStart = Math.floor((rect.top - surfaceRect.top) / cellHeight);
+    var rowEnd = Math.ceil((rect.bottom - surfaceRect.top) / cellHeight);
+
+    for (var row = Math.max(0, rowStart); row < Math.min(rows, rowEnd); row += 1) {
+      for (var col = Math.max(0, colStart); col < Math.min(cols, colEnd); col += 1) {
         colors[(row * cols) + col] = rgb;
       }
     }
