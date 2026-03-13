@@ -599,9 +599,11 @@ button {
 
 .briefings__rail {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 24px;
-  width: min(1100px, 100%);
+  width: 100%;
+  max-width: 1100px;
+  align-items: stretch;
 }
 
 .brief-card {
@@ -1343,18 +1345,5 @@ button {
   .footer__links a {
     padding-bottom: 24px;
     font-size: 18px;
-  }
-}
-
-@media (max-width: 1180px) {
-  .briefings__rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-  }
-}
-
-@media (max-width: 720px) {
-  .briefings__rail {
-    grid-template-columns: 1fr;
   }
 }
