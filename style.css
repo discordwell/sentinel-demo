@@ -602,7 +602,6 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 24px;
   width: 100%;
-  max-width: 1220px;
   align-items: stretch;
 }
 
