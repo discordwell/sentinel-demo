@@ -2,14 +2,10 @@
   --bg: #fffdf2;
   --ink: #1e0202;
   --orange: #f46921;
-  --orange-soft: #f18248;
-  --orange-wash: rgba(241, 130, 72, 0.62);
   --cream-card: #fff8d8;
   --maroon: #8d353c;
   --sage: #9bcca5;
   --blue: #9fbfc3;
-  --muted: #625455;
-  --grid-line: rgba(255, 253, 242, 0.16);
   --divider: rgba(244, 105, 33, 0.72);
   --cut: 56px;
   --shell: 1280px;
@@ -82,19 +78,23 @@ button {
   transition: background-color 120ms ease-out;
 }
 
-.eyebrow,
-.brief-card__eyebrow,
-.insight-card__eyebrow {
-  font-family: var(--font-display);
-  text-transform: uppercase;
+.pixel-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  background: inherit;
+  pointer-events: none;
 }
 
 .eyebrow {
-  margin: 0 0 16px;
+  margin: 0;
+  font-family: var(--font-display);
   font-size: 14px;
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 1.4px;
+  text-transform: uppercase;
   color: var(--orange);
 }
 
@@ -102,9 +102,15 @@ button {
   color: var(--bg);
 }
 
+.section-head .eyebrow {
+  margin-bottom: 16px;
+}
+
+/* All display headings use Martian Mono bold */
 .section-title,
 .hero__title,
 .signup__title,
+.focus-card h3,
 .insight-card h3,
 .brief-card h3,
 .leader h3,
@@ -117,8 +123,8 @@ button {
 
 .section-title {
   max-width: 760px;
-  font-size: 48px;
-  line-height: 1.2917;
+  font-size: 54px;
+  line-height: 1.148;
 }
 
 .section-head {
@@ -138,8 +144,6 @@ button {
 .foresight__member p,
 .signup__text {
   margin: 0;
-  color: var(--ink);
-  font-family: var(--font-body);
 }
 
 .section-head__side p {
@@ -215,16 +219,6 @@ button {
   background: var(--orange);
 }
 
-.hero__pixels {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: grid;
-  gap: 0;
-  background: var(--orange);
-  pointer-events: none;
-}
-
 .hero__pixels .pixel-cell {
   box-shadow: inset 0 0 0 1px rgba(255, 253, 242, 0.1);
 }
@@ -251,23 +245,6 @@ button {
 .hero__menu-button img {
   width: 100%;
   height: 100%;
-}
-
-@media (min-width: 1025px) {
-  .hero__brand,
-  .hero__menu-button {
-    top: var(--hero-grid-cell-height, 90px);
-    width: var(--hero-grid-cell-width, 90px);
-    height: var(--hero-grid-cell-height, 90px);
-  }
-
-  .hero__brand {
-    left: var(--hero-grid-cell-width, 90px);
-  }
-
-  .hero__menu-button {
-    right: var(--hero-grid-cell-width, 90px);
-  }
 }
 
 .hero__menu {
@@ -336,13 +313,12 @@ button {
 
 .hero__title {
   max-width: none;
-  font-size: 64px;
-  line-height: 1.25;
+  font-size: var(--hero-title-font-size, 64px);
+  line-height: var(--hero-title-line-height, 1.25);
   color: var(--bg);
 }
 
 .hero__panel .button {
-  margin-top: 0;
   min-height: 52px;
   padding: 0 24px;
   font-size: 23px;
@@ -352,6 +328,21 @@ button {
 }
 
 @media (min-width: 1025px) {
+  .hero__brand,
+  .hero__menu-button {
+    top: var(--hero-grid-cell-height, 90px);
+    width: var(--hero-grid-cell-width, 90px);
+    height: var(--hero-grid-cell-height, 90px);
+  }
+
+  .hero__brand {
+    left: var(--hero-grid-cell-width, 90px);
+  }
+
+  .hero__menu-button {
+    right: var(--hero-grid-cell-width, 90px);
+  }
+
   .hero__panel {
     left: var(--hero-panel-left, var(--hero-grid-cell-width, 90px));
     top: var(--hero-panel-top, calc(var(--hero-grid-cell-height, 90px) * 5));
@@ -372,10 +363,18 @@ button {
   padding: 0 0 39px;
 }
 
-.press__strip {
-  display: block;
-  width: 100%;
-  height: auto;
+.press__logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 39px 0;
+}
+
+.press__logos img {
+  height: 24px;
+  width: auto;
+  opacity: 0.5;
 }
 
 .press::after {
@@ -402,49 +401,21 @@ button {
 }
 
 .focus-card h3 {
-  margin: 0;
-  font-family: var(--font-display);
   font-size: 22px;
-  font-weight: 700;
   line-height: 1.35;
   color: var(--bg);
 }
 
-.focus-card--orange {
-  background: var(--orange);
-}
-
-.focus-card--sage {
-  background: var(--sage);
-}
-
-.focus-card--maroon {
-  background: var(--maroon);
-}
-
-.focus-card--blue {
-  background: var(--blue);
-}
-
-.track {
-  padding-bottom: 0;
-}
+.bg-orange { background: var(--orange); }
+.bg-sage { background: var(--sage); }
+.bg-maroon { background: var(--maroon); }
+.bg-blue { background: var(--blue); }
 
 .track__panel {
   display: grid;
   grid-template-columns: 411px minmax(0, 766px);
-  gap: 0;
   padding: 32px;
   background: var(--cream-card);
-}
-
-.track__intro {
-  padding-top: 0;
-}
-
-.track__intro .section-title {
-  font-size: 54px;
-  line-height: 1.148;
 }
 
 .track__copy {
@@ -476,23 +447,6 @@ button {
   line-height: 1.2;
 }
 
-.leadership .section-head__side p,
-.foresight .section-head__side p,
-.judgment .section-head__side p {
-  font-size: 18px;
-  line-height: 1.2;
-}
-
-.judgment {
-  padding-top: 80px;
-}
-
-.judgment .section-title {
-  max-width: 760px;
-  font-size: 54px;
-  line-height: 1.148;
-}
-
 .insight-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 624px));
@@ -507,21 +461,12 @@ button {
   background: var(--maroon);
 }
 
-.insight-card__pixels {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: grid;
-  gap: 0;
-  background: var(--maroon);
-  pointer-events: none;
-}
-
 .insight-card__pixels .pixel-cell,
 .signup__pixels .pixel-cell {
   box-shadow: inset 0 0 0 1px rgba(255, 253, 242, 0.04);
 }
 
+/* Layer content above .pixel-surface overlays */
 .insight-card__content,
 .brief-card__content,
 .signup__copy,
@@ -530,33 +475,26 @@ button {
   z-index: 2;
 }
 
-.insight-card__content {
+.insight-card__content,
+.brief-card__content {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   min-height: 100%;
-  padding: 30px 32px 32px;
+  padding: 32px;
   color: var(--bg);
 }
 
-.insight-card__eyebrow,
-.brief-card__eyebrow {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: 1.4px;
-  color: var(--bg);
-}
-
-.insight-card h3 {
+.insight-card h3,
+.brief-card h3 {
   margin-top: 116px;
   font-size: 32px;
   line-height: 1.32;
   color: var(--bg);
 }
 
-.insight-card p:last-child {
+.insight-card p:last-child,
+.brief-card p:last-child {
   max-width: 408px;
   margin-top: 10px;
   font-size: 18px;
@@ -577,12 +515,7 @@ button {
   line-height: 1;
 }
 
-.briefings {
-  padding-top: 80px;
-}
-
 .briefings__viewport {
-  overflow: visible;
   margin-top: 80px;
 }
 
@@ -596,53 +529,11 @@ button {
 
 .brief-card {
   position: relative;
-  width: 100%;
   min-height: 324px;
-  padding: 32px;
-  color: var(--bg);
-}
-
-.brief-card__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 253px;
-}
-
-.brief-card h3 {
-  margin-top: 112px;
-  font-size: 32px;
-  line-height: 1.3125;
-  color: var(--bg);
-}
-
-.brief-card p:last-child {
-  margin-top: 16px;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.22;
-  color: rgba(255, 253, 242, 0.92);
-}
-
-.brief-card--maroon {
-  background: var(--maroon);
-}
-
-.brief-card--sage {
-  background: var(--sage);
-}
-
-.brief-card--blue {
-  background: var(--blue);
-}
-
-.leadership {
-  padding-top: 80px;
 }
 
 .leadership .section-title,
 .foresight .section-title {
-  font-size: 54px;
   line-height: 1;
 }
 
@@ -670,7 +561,8 @@ button {
   object-fit: cover;
 }
 
-.leader h3 {
+.leader h3,
+.foresight__member h3 {
   font-size: 32px;
   line-height: 1.09375;
 }
@@ -683,7 +575,8 @@ button {
   line-height: 1.09;
 }
 
-.leader__bio {
+.leader__bio,
+.foresight__member p {
   margin-top: 16px;
   font-size: 18px;
   font-weight: 300;
@@ -712,18 +605,6 @@ button {
   text-align: center;
 }
 
-.foresight__member h3 {
-  font-size: 32px;
-  line-height: 1.09375;
-}
-
-.foresight__member p {
-  margin-top: 16px;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.22;
-}
-
 .signup {
   position: relative;
   display: grid;
@@ -732,16 +613,6 @@ button {
   margin-top: 80px;
   overflow: hidden;
   background: var(--maroon);
-}
-
-.signup__pixels {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: grid;
-  gap: 0;
-  background: var(--maroon);
-  pointer-events: none;
 }
 
 .signup__copy {
@@ -768,7 +639,6 @@ button {
 .signup__form {
   display: flex;
   align-items: stretch;
-  gap: 0;
   padding: 24px 32px 80px;
 }
 
@@ -1035,8 +905,11 @@ button {
     padding: 24px 0 23px;
   }
 
-  .press__strip {
-    width: 100%;
+  .press__logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px 32px;
+    padding: 24px 0;
   }
 
   .press::after {
@@ -1044,10 +917,6 @@ button {
   }
 
   .section-title,
-  .track__intro .section-title,
-  .judgment .section-title,
-  .leadership .section-title,
-  .foresight .section-title,
   .signup__title {
     font-size: 32px;
     line-height: 1.22;
@@ -1077,7 +946,7 @@ button {
   }
 
   .insight-card__content,
-  .brief-card {
+  .brief-card__content {
     padding: 24px;
   }
 
@@ -1091,10 +960,6 @@ button {
   .insight-card h3,
   .brief-card h3 {
     margin-top: 72px;
-  }
-
-  .brief-card {
-    width: 100%;
   }
 
   .leader__photo {

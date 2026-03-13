@@ -1,11 +1,14 @@
 (function () {
   'use strict';
 
+  var MOBILE_BREAKPOINT = 768;
+  var DESKTOP_BREAKPOINT = 1025;
   var DEFAULT_CELL_SIZE = 24;
   var DEFAULT_MOBILE_CELL_SIZE = 18;
   var TOUCH_FADE_MS = 600;
   var RING_BLEND = [0.74, 0.42, 0.18];
   var DEFAULT_HIGHLIGHT = '#f8e8dc';
+  var DEFAULT_BASE_COLOR = '#e8753a';
   var HERO_PANEL_COLOR = '#eb8a55';
   var SAMPLE_PATTERNS = {
     hero: [
@@ -54,7 +57,6 @@
   };
 
   var surfaces = [];
-  var cleanupFns = [];
   var imageCache = {};
   var sampledPatternCache = {};
 
@@ -143,13 +145,6 @@
       });
     }, 50), { passive: true });
 
-    cleanupFns.push(function () {
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('touchstart', onTouchMove);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('resize', onResize);
-    });
   }
 
   function buildSurface(state) {
@@ -258,15 +253,12 @@
       });
     }
 
-    cleanupFns.push(function () {
-      observer.disconnect();
-    });
   }
 
   function getCellSize(node) {
     var desktop = parseInt(node.dataset.cellSize || DEFAULT_CELL_SIZE, 10);
     var mobile = parseInt(node.dataset.cellSizeMobile || DEFAULT_MOBILE_CELL_SIZE, 10);
-    return window.innerWidth <= 768 ? mobile : desktop;
+    return window.innerWidth <= MOBILE_BREAKPOINT ? mobile : desktop;
   }
 
   function getBaseColors(state, cols, rows) {
@@ -285,13 +277,13 @@
       return getPatternColors(SAMPLE_PATTERNS[node.dataset.pattern], cols, rows);
     }
 
-    return fillColors(hexToRgb(node.dataset.baseColor || '#E8753A'), cols * rows);
+    return fillColors(hexToRgb(node.dataset.baseColor || DEFAULT_BASE_COLOR), cols * rows);
   }
 
   function getHeroWireframeColors(state, cols, rows) {
     var node = state.node;
     var hero = node.closest('.hero');
-    var base = hexToRgb(node.dataset.baseColor || '#E8753A');
+    var base = hexToRgb(node.dataset.baseColor || DEFAULT_BASE_COLOR);
     var panel = hexToRgb(HERO_PANEL_COLOR);
     var colors = fillColors(base, cols * rows);
 
@@ -411,7 +403,7 @@
     hero.style.setProperty('--hero-grid-cell-width', cellWidth + 'px');
     hero.style.setProperty('--hero-grid-cell-height', cellHeight + 'px');
 
-    if (window.innerWidth < 1025) {
+    if (window.innerWidth < DESKTOP_BREAKPOINT) {
       state.heroLayout = null;
       hero.style.removeProperty('--hero-panel-left');
       hero.style.removeProperty('--hero-panel-top');

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sentinel builds open-source resilience for an uncertain world. World-class foresight with a proven track record.">
   <title>Sentinel</title>
-  <link rel="icon" href="assets/figma/hero-brand.png">
+  <link rel="icon" href="assets/img/hero-brand.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Martian+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260312o">
-  <link rel="stylesheet" href="assets/figma/typography.css?v=20260312j">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header id="hero" class="hero">
@@ -21,15 +21,14 @@
       data-highlight="#fffdf2"
       data-cell-size="90"
       data-cell-size-mobile="45"
-      data-listen-parent="#hero"
     ></div>
 
     <a class="hero__brand" href="#hero" aria-label="Sentinel home">
-      <img src="assets/figma/hero-brand.png" alt="" width="90" height="90">
+      <img src="assets/img/hero-brand.png" alt="" width="90" height="90">
     </a>
 
     <button class="hero__menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="hero-menu">
-      <img src="assets/figma/hero-menu.png" alt="" width="90" height="90">
+      <img src="assets/img/hero-menu.png" alt="" width="90" height="90">
     </button>
 
     <nav id="hero-menu" class="hero__menu" aria-label="Primary">
@@ -54,7 +53,13 @@
   </header>
 
   <section class="press" aria-label="Press logos">
-    <img class="press__strip" src="assets/figma/press-strip.png" alt="Reuters, Financial Times, Wired, TechCrunch, and The Times">
+    <div class="press__logos shell">
+      <img src="assets/logos/reuters.svg" alt="Reuters" height="24">
+      <img src="assets/logos/ft.svg" alt="Financial Times" height="24">
+      <img src="assets/logos/wired.svg" alt="Wired" height="24">
+      <img src="assets/logos/techcrunch.svg" alt="TechCrunch" height="24">
+      <img src="assets/logos/thetimes.svg" alt="The Times" height="24">
+    </div>
   </section>
 
   <main>
@@ -72,22 +77,22 @@
         </div>
 
         <div class="research__grid">
-          <article class="focus-card focus-card--orange clipped-card">
+          <article class="focus-card bg-orange clipped-card">
             <h3>Geopolitics</h3>
           </article>
-          <article class="focus-card focus-card--sage clipped-card">
+          <article class="focus-card bg-sage clipped-card">
             <h3>Artificial<br>Intelligence</h3>
           </article>
-          <article class="focus-card focus-card--maroon clipped-card">
+          <article class="focus-card bg-maroon clipped-card">
             <h3>Economics</h3>
           </article>
-          <article class="focus-card focus-card--maroon clipped-card">
+          <article class="focus-card bg-maroon clipped-card">
             <h3>Bio Risks</h3>
           </article>
-          <article class="focus-card focus-card--blue clipped-card">
+          <article class="focus-card bg-blue clipped-card">
             <h3>Technology</h3>
           </article>
-          <article class="focus-card focus-card--orange clipped-card">
+          <article class="focus-card bg-orange clipped-card">
             <h3>Climate &amp;<br>Nature</h3>
           </article>
         </div>
@@ -228,9 +233,9 @@
 
         <div class="insight-grid">
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card1" data-image-src="assets/figma/patterns/card1.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card1" data-image-src="assets/img/patterns/card1.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <p class="insight-card__eyebrow">What you get</p>
+              <p class="eyebrow eyebrow--light">What you get</p>
               <h3>Custom Assessments</h3>
               <p>Weekly probability updates on the exact questions that matter to your positions.</p>
             </div>
@@ -238,9 +243,9 @@
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card2" data-image-src="assets/figma/patterns/card2.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card2" data-image-src="assets/img/patterns/card2.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <p class="insight-card__eyebrow">What you get</p>
+              <p class="eyebrow eyebrow--light">What you get</p>
               <h3>Driver Analysis</h3>
               <p>Transparent reasoning behind each forecast, identifying the critical factors at play.</p>
             </div>
@@ -248,9 +253,9 @@
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card3" data-image-src="assets/figma/patterns/card3.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card3" data-image-src="assets/img/patterns/card3.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <p class="insight-card__eyebrow">What you get</p>
+              <p class="eyebrow eyebrow--light">What you get</p>
               <h3>Sensitivity Indicators</h3>
               <p>Advance warning of the signals and events that could trigger significant forecast updates.</p>
             </div>
@@ -258,9 +263,9 @@
           </article>
 
           <article class="insight-card clipped-card">
-            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card4" data-image-src="assets/figma/patterns/card4.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
+            <div class="insight-card__pixels pixel-surface" aria-hidden="true" data-pattern="card4" data-image-src="assets/img/patterns/card4.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
             <div class="insight-card__content">
-              <p class="insight-card__eyebrow">What you get</p>
+              <p class="eyebrow eyebrow--light">What you get</p>
               <h3>Built for Your Workflow</h3>
               <p>Integrate forecasts directly into your systems or access via dashboard and reports.</p>
             </div>
@@ -285,27 +290,27 @@
 
         <div class="briefings__viewport">
           <div class="briefings__rail">
-            <article class="brief-card brief-card--maroon clipped-card">
+            <article class="brief-card bg-maroon clipped-card">
               <div class="brief-card__content">
-                <p class="brief-card__eyebrow">Briefing</p>
+                <p class="eyebrow eyebrow--light">Briefing</p>
                 <h3>Global Risks Watch</h3>
                 <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
               </div>
               <span class="brief-card__arrow" aria-hidden="true"></span>
             </article>
 
-            <article class="brief-card brief-card--sage clipped-card">
+            <article class="brief-card bg-sage clipped-card">
               <div class="brief-card__content">
-                <p class="brief-card__eyebrow">Briefing</p>
+                <p class="eyebrow eyebrow--light">Briefing</p>
                 <h3>Global Risks Watch</h3>
                 <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
               </div>
               <span class="brief-card__arrow" aria-hidden="true"></span>
             </article>
 
-            <article class="brief-card brief-card--blue clipped-card">
+            <article class="brief-card bg-blue clipped-card">
               <div class="brief-card__content">
-                <p class="brief-card__eyebrow">Briefing</p>
+                <p class="eyebrow eyebrow--light">Briefing</p>
                 <h3>Global Risks Watch</h3>
                 <p>Lorem ipsum dolor sit amet consectetur. Mattis morbi diam non pellentesque facilisis aenean velit.</p>
               </div>
@@ -332,7 +337,7 @@
         <div class="leadership__list">
           <article class="leader">
             <div class="leader__photo clipped-card">
-              <img src="assets/figma/leader-nuno.png" alt="Nuño Sempere" width="321" height="286">
+              <img src="assets/img/leader-nuno.png" alt="Nuño Sempere" width="321" height="286">
             </div>
             <div class="leader__body">
               <h3>Nuño Sempere</h3>
@@ -343,7 +348,7 @@
 
           <article class="leader">
             <div class="leader__photo clipped-card">
-              <img src="assets/figma/leader-rai.png" alt="Rai Sur" width="320" height="285">
+              <img src="assets/img/leader-rai.png" alt="Rai Sur" width="320" height="285">
             </div>
             <div class="leader__body">
               <h3>Rai Sur</h3>
@@ -386,7 +391,7 @@
         </div>
 
         <div id="signup" class="signup clipped-card">
-          <div class="signup__pixels pixel-surface" aria-hidden="true" data-pattern="signup" data-image-src="assets/figma/patterns/signup.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
+          <div class="signup__pixels pixel-surface" aria-hidden="true" data-pattern="signup" data-image-src="assets/img/patterns/signup.png" data-highlight="#fffdf2" data-cell-size="90" data-cell-size-mobile="45"></div>
           <div class="signup__copy">
             <p class="eyebrow eyebrow--light">Sign up to our weekly briefings</p>
             <h2 class="signup__title">Insights delivered straight<br>to your inbox</h2>
@@ -409,10 +414,10 @@
     <div class="shell footer__inner">
       <div class="footer__brand">
         <a class="footer__logo" href="#hero" aria-label="Sentinel home">
-          <img src="assets/figma/footer-brand.png" alt="Sentinel" width="903" height="102">
+          <img src="assets/img/footer-brand.png" alt="Sentinel" width="903" height="102">
         </a>
         <div class="footer__meta">
-          <p>All right reserved</p>
+          <p>All rights reserved</p>
           <p>&copy; Sentinel Research, 2025</p>
         </div>
       </div>
@@ -426,7 +431,7 @@
     </div>
   </footer>
 
-    <script src="grid-effect.js?v=20260312j"></script>
+  <script src="grid-effect.js"></script>
   <script>
     (function () {
       var button = document.querySelector('.hero__menu-button');
