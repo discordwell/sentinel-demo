@@ -899,7 +899,6 @@ button {
 
   .research,
   .track,
-  .briefings,
   .leadership,
   .footer,
   .judgment {
@@ -920,10 +919,6 @@ button {
     height: 1243px;
   }
 
-  .briefings {
-    height: 739px;
-  }
-
   .leadership {
     height: 1447px;
   }
@@ -935,13 +930,8 @@ button {
 
   .research > .shell,
   .track > .shell,
-  .briefings > .shell,
   .leadership > .shell,
   .footer > .shell {
-    display: none;
-  }
-
-  .briefings__viewport {
     display: none;
   }
 
@@ -994,6 +984,23 @@ button {
     left: 960px;
     width: 90px;
     height: 24px;
+  }
+
+  .briefings {
+    position: static;
+    height: auto;
+    padding-top: 80px;
+    overflow: visible;
+  }
+
+  .briefings > .shell,
+  .briefings__viewport {
+    display: block;
+  }
+
+  .briefings .desktop-shot,
+  .desktop-hit--briefings-link {
+    display: none;
   }
 
   .desktop-hit--leadership-link {
